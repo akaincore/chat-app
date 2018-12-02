@@ -7,8 +7,7 @@ import {withStyles} from '@material-ui/core/styles';
 
 const styles = () => ({
   appBar: {
-    width: `calc(100% - 320px)`,
-    marginLeft: 320,
+    width: '100%',
   },
 });
 

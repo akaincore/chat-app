@@ -5,6 +5,8 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import "typeface-roboto";
 
+window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
+
 ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
