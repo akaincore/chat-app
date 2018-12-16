@@ -10,8 +10,10 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
     height: '100%',
     overflowY: 'auto',
-    paddingBottom: '100px',
   },
+  list: {
+    paddingBottom: '100px',
+  }
 });
 
 class MessagesList extends React.Component {
@@ -20,7 +22,7 @@ class MessagesList extends React.Component {
     const {classes} = this.props;
     return (
       <div className={classes.root}>
-        <List>
+        <List className={classes.list}>
           {this.props.messages.map((message, index) => {
             return (
               <Message

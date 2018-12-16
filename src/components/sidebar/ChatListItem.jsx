@@ -1,8 +1,7 @@
 import React from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import Avatar from '@material-ui/core/Avatar';
-import initials from "../../utils/initials";
+import ChatAvatar from "../common/ChatAvatar";
 
 const ChatListItem = props => {
   return (
@@ -11,9 +10,9 @@ const ChatListItem = props => {
       selected={props.selected}
       onClick={props.onClick}
     >
-      <Avatar>
-        {initials(props.title)}
-      </Avatar>
+      <ChatAvatar
+        title={props.title}
+      />
       <ListItemText
         primary={props.title}
         secondary={props.hint}

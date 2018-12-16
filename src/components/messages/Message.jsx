@@ -1,10 +1,9 @@
 import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
 import {withStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import initials from "../../utils/initials";
-import classnames from 'classnames';
+import classNames from 'classnames';
+import ChatAvatar from "../common/ChatAvatar";
 
 const styles = theme => ({
   root: {
@@ -36,13 +35,14 @@ const Message = props => {
   const isMy = props.sender === 'me';
   return (
     <div
-      className={classnames(classes.messageContainer, isMy && classes.myMessage)}
+      className={classNames(classes.messageContainer, isMy && classes.myMessage)}
     >
-      <Avatar className={classes.avatar}>
-        {initials(props.sender)}
-      </Avatar>
+      <ChatAvatar
+        className={classes.avatar}
+        title={props.sender}
+      />
       <Paper
-        className={classnames(classes.root, isMy && classes.myMessageBackground)}
+        className={classNames(classes.root, isMy && classes.myMessageBackground)}
         elevation={1}
       >
         <Typography variant="subtitle2" component="h3">

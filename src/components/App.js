@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import DrawerLeft from "./components/sidebar/Drawer";
-import Header from "./components/layout/Header";
-import mockData from './mock-data'
-import MessagesList from "./components/messages/MessagesList";
+import DrawerLeft from "./sidebar/Drawer";
+import Header from "./layout/Header";
+import mockData from '../mock-data'
+import MessagesList from "./messages/MessagesList";
 import {withStyles} from '@material-ui/core/styles';
 
-const styles = theme => ({
+const styles = () => ({
   container: {
     display: 'flex',
     flexDirection: 'row',
