@@ -43,7 +43,7 @@ const AuthForm = ({ fields, values, submitText, classes, inputChange, onSubmit, 
         required={required}
         className={classes.textField}
         margin="normal"
-        onChange={inputChange(name)}
+        onChange={inputChange}
       />
     ))}
     <Button

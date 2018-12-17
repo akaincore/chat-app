@@ -63,12 +63,13 @@ class AuthPage extends React.Component {
     this.setState({ currentTab });
   };
 
-  inputChange = (form) => (field) => (event) => {
+  inputChange = (form) => (event) => {
     event.persist();
+    const {name, value} = event.target;
     this.setState((prevState) => ({
       [form]: {
         ...prevState[form],
-        [field]: event.target.value
+        [name]: value
       },
     }));
   };
