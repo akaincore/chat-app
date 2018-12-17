@@ -31,8 +31,8 @@ class BottomNav extends React.Component {
         showLabels
         className={classes.root}
       >
-        <BottomNavigationAction label="My chats" icon={<ExploreIcon />} />
-        <BottomNavigationAction label="Explore" icon={<RestoreIcon />} />
+        <BottomNavigationAction label="My chats" icon={<ExploreIcon/>}/>
+        <BottomNavigationAction label="Explore" icon={<RestoreIcon/>}/>
       </BottomNavigation>
     );
   }

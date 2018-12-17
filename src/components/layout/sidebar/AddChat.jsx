@@ -16,7 +16,7 @@ const AddChat = props => {
   const { classes } = props;
   return (
     <Button variant="fab" color="primary" aria-label="Add" className={classes.button}>
-      <AddIcon />
+      <AddIcon/>
     </Button>
   );
 };

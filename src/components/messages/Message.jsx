@@ -1,5 +1,5 @@
 import React from 'react';
-import {withStyles} from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import classNames from 'classnames';
@@ -31,7 +31,7 @@ const styles = theme => ({
 });
 
 const Message = props => {
-  const {classes} = props;
+  const { classes } = props;
   const isMy = props.sender === 'me';
   return (
     <div

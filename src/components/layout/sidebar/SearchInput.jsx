@@ -1,5 +1,5 @@
 import React from 'react';
-import {withStyles} from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 
 const styles = theme => ({
@@ -15,7 +15,7 @@ const styles = theme => ({
 });
 
 const SearchInput = props => {
-  const {classes} = props;
+  const { classes } = props;
   return (
     <div className={classes.container}>
       <Input

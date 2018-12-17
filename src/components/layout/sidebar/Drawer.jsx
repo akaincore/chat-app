@@ -1,5 +1,5 @@
 import React from 'react';
-import {withStyles} from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import ChatList from "./ChatList";
 import SearchInput from "./SearchInput";
@@ -21,7 +21,7 @@ const styles = theme => ({
 class DrawerLeft extends React.Component {
 
   render() {
-    const {classes} = this.props;
+    const { classes } = this.props;
 
     return (
       <Drawer
@@ -44,4 +44,4 @@ class DrawerLeft extends React.Component {
 }
 
 
-export default withStyles(styles, {withTheme: true})(DrawerLeft);
+export default withStyles(styles, { withTheme: true })(DrawerLeft);
