@@ -1,7 +1,6 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
@@ -29,8 +28,8 @@ const styles = theme => ({
 });
 
 
-const AuthForm = ({ fields, values, submitText, classes, inputChange, onSubmit, hidden }) => (
-  <form className={classNames(classes.authForm, hidden && classes.hidden)} onSubmit={onSubmit}>
+const AuthForm = ({ fields, values, submitText, classes, inputChange, onSubmit }) => (
+  <form className={classes.authForm} onSubmit={onSubmit}>
     {fields.map(({ type, name, placeholder, required }, index) => (
       <TextField
         fullWidth
