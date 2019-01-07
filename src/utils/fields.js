@@ -1,6 +1,6 @@
 const getFieldsInitialState = (fields) => (fields.reduce(
     (result, field) => {
-      return { ...result, [field.name]: '' }
+      return { ...result, [field.name]: '' };
     },
     {}
   )

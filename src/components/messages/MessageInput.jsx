@@ -1,5 +1,5 @@
 import React from 'react';
-import {withStyles} from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import Paper from '@material-ui/core/Paper';
 
@@ -22,7 +22,7 @@ const styles = theme => ({
 });
 
 const MessageInput = props => {
-  const {classes} = props;
+  const { classes } = props;
   return (
     <div className={classes.container}>
       <Paper className={classes.paper}>

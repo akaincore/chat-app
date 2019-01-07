@@ -3,10 +3,11 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Grid from "@material-ui/core/Grid";
-import Header from "../layout/Header";
-import AuthForm from "./AuthForm";
-import getFieldsInitialState from "../../utils/fields";
+import Grid from '@material-ui/core/Grid';
+import fetch from 'isomorphic-fetch';
+import Header from '../layout/Header';
+import AuthForm from './AuthForm';
+import getFieldsInitialState from '../../utils/fields';
 
 const styles = () => ({
   formContainer: {
@@ -65,7 +66,7 @@ class AuthPage extends React.Component {
 
   inputChange = (form) => (event) => {
     event.persist();
-    const {name, value} = event.target;
+    const { name, value } = event.target;
     this.setState((prevState) => ({
       [form]: {
         ...prevState[form],
@@ -77,14 +78,28 @@ class AuthPage extends React.Component {
   onSubmit = (form) => (event) => {
     event.preventDefault();
     const data = this.state[form];
-    console.log(data);
+    let url = 'http://10.102.100.176:9999/v1';
+    url += form === 'login' ? '/login' : '/signup';
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+      })
+      .catch(reason => console.error(reason));
   };
 
   render() {
     const { classes } = this.props;
     const { currentTab, login, signup } = this.state;
     return (
-      <Grid container justify={"center"}>
+      <Grid container justify={'center'}>
         <Header/>
         <Grid item className={classes.formContainer}>
           <Paper square>
@@ -110,7 +125,6 @@ class AuthPage extends React.Component {
                 values={signup}
                 submitText={'Sign Up'}
                 inputChange={this.inputChange('signup')}
-                hidden={currentTab !== 'signup'}
                 onSubmit={this.onSubmit('signup')}
               />
             }

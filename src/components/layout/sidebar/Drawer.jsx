@@ -1,11 +1,11 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import ChatList from "./ChatList";
-import SearchInput from "./SearchInput";
-import Divider from "@material-ui/core/Divider";
-import BottomNav from "./BottomNav";
-import AddChat from "./AddChat";
+import ChatList from './ChatList';
+import SearchInput from './SearchInput';
+import Divider from '@material-ui/core/Divider';
+import BottomNav from './BottomNav';
+import AddChat from './AddChat';
 
 
 const styles = theme => ({

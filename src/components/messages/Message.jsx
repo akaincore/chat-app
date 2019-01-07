@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import classNames from 'classnames';
-import ChatAvatar from "../common/ChatAvatar";
+import ChatAvatar from '../common/ChatAvatar';
 
 const styles = theme => ({
   root: {

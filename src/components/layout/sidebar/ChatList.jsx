@@ -1,7 +1,7 @@
 import React from 'react';
-import {withStyles} from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
-import ChatListItem from "./ChatListItem";
+import ChatListItem from './ChatListItem';
 
 const styles = theme => ({
   root: {
@@ -19,11 +19,11 @@ class ChatList extends React.Component {
   };
 
   handleListItemClick = (event, index) => {
-    this.setState({selectedIndex: index});
+    this.setState({ selectedIndex: index });
   };
 
   render() {
-    const {classes} = this.props;
+    const { classes } = this.props;
     return (
       <div className={classes.root}>
         <List>
@@ -36,7 +36,7 @@ class ChatList extends React.Component {
                 title={chat.title}
                 hint={'some additional info'}
               />
-            )
+            );
           })}
         </List>
       </div>

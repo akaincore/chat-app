@@ -1,7 +1,7 @@
-import AppBar from "@material-ui/core/AppBar/index";
+import AppBar from '@material-ui/core/AppBar/index';
 import React from 'react';
-import Toolbar from "@material-ui/core/es/Toolbar/Toolbar";
-import Typography from "@material-ui/core/es/Typography/Typography";
+import Toolbar from '@material-ui/core/es/Toolbar/Toolbar';
+import Typography from '@material-ui/core/es/Typography/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
 
@@ -22,7 +22,7 @@ function Header(props) {
         </Typography>
       </Toolbar>
     </AppBar>
-  )
+  );
 }
 
 export default withStyles(styles)(Header);

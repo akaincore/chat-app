@@ -1,7 +1,7 @@
 import React from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import ChatAvatar from "../../common/ChatAvatar";
+import ChatAvatar from '../../common/ChatAvatar';
 
 const ChatListItem = props => {
   return (
