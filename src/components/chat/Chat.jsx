@@ -29,7 +29,7 @@ const Chat = ({ classes, messages }) => (
         );
       })}
     </List>
-    <MessageInput/>
+    <MessageInput />
   </main>
 );
 

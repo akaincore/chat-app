@@ -4,10 +4,10 @@ import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Grid from '@material-ui/core/Grid';
-import fetch from 'isomorphic-fetch';
 import Header from '../layout/Header';
 import AuthForm from './AuthForm';
 import getFieldsInitialState from '../../utils/fields';
+import { Redirect } from 'react-router-dom';
 
 const styles = () => ({
   formContainer: {
@@ -77,30 +77,23 @@ class AuthPage extends React.Component {
 
   onSubmit = (form) => (event) => {
     event.preventDefault();
-    const data = this.state[form];
-    let url = 'http://10.102.100.176:9999/v1';
-    url += form === 'login' ? '/login' : '/signup';
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-      })
-      .catch(reason => console.error(reason));
+    const { username, password } = this.state[form];
+    form === 'login' ?
+      this.props.login(username, password)
+      : this.props.signup(username, password);
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, isAuthenticated } = this.props;
+    if (isAuthenticated) {
+      return (
+        <Redirect to={'/chat'} />
+      );
+    }
     const { currentTab, login, signup } = this.state;
     return (
       <Grid container justify={'center'}>
-        <Header/>
+        <Header />
         <Grid item className={classes.formContainer}>
           <Paper square>
             <Tabs
@@ -109,8 +102,8 @@ class AuthPage extends React.Component {
               textColor="primary"
               onChange={this.tabChange}
             >
-              <Tab label="Login" value={'login'}/>
-              <Tab label="Sign Up" value={'signup'}/>
+              <Tab label="Login" value={'login'} />
+              <Tab label="Sign Up" value={'signup'} />
             </Tabs>
             {currentTab === 'login' ?
               <AuthForm

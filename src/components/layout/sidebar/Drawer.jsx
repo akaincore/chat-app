@@ -32,12 +32,12 @@ class DrawerLeft extends React.Component {
           paper: classes.drawerPaper,
         }}
       >
-        <SearchInput/>
-        <Divider/>
-        <ChatList chats={this.props.chats}/>
-        <Divider/>
-        <AddChat/>
-        <BottomNav/>
+        <SearchInput />
+        <Divider />
+        <ChatList chats={this.props.chats} />
+        <Divider />
+        <AddChat />
+        <BottomNav />
       </Drawer>
     );
   }

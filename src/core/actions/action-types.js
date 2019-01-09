@@ -1,0 +1,9 @@
+export const LOGIN_PENDING = Symbol('LOGIN_PENDING');
+export const LOGIN_SUCCESS = Symbol('LOGIN_SUCCESS');
+export const LOGIN_FAILURE = Symbol('LOGIN_FAILURE');
+export const LOGOUT_PENDING = Symbol('LOGOUT_PENDING');
+export const LOGOUT_SUCCESS = Symbol('LOGOUT_SUCCESS');
+export const LOGOUT_FAILURE = Symbol('LOGOUT_FAILURE');
+export const SIGNUP_PENDING = Symbol('SIGNUP_PENDING');
+export const SIGNUP_SUCCESS = Symbol('SIGNUP_SUCCESS');
+export const SIGNUP_FAILURE = Symbol('SIGNUP_FAILURE');
