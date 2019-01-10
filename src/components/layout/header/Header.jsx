@@ -17,22 +17,31 @@ const styles = () => ({
 });
 
 const Header = (props) => {
-  const { classes, logout, isAuthenticated } = props;
+  const {
+    classes,
+    logout,
+    isAuthenticated,
+    currentUser,
+    updateUser,
+    activeChat,
+  } = props;
 
   return (
     <AppBar position="static" className={classes.appBar}>
       <Toolbar className={classes.toolBar}>
         <Typography variant="h6" color="inherit">
-          Chat App
+          {activeChat ? activeChat.title : 'Chat App'}
         </Typography>
         {isAuthenticated &&
-          <ProfileMenu
-            logout={logout}
-          />
+        <ProfileMenu
+          currentUser={currentUser}
+          updateUser={updateUser}
+          logout={logout}
+        />
         }
       </Toolbar>
     </AppBar>
   );
-}
+};
 
 export default withStyles(styles)(Header);

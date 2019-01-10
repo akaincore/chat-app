@@ -27,29 +27,32 @@ const styles = theme => ({
   },
   myMessageBackground: {
     backgroundColor: '#66ccff',
-  }
+  },
+  emptyMessage: {
+    fontStyle: 'italic',
+    color: '#aaa',
+  },
 });
 
-const Message = props => {
-  const { classes } = props;
-  const isMy = props.sender === 'me';
+const Message = ({ classes, sender, content, currentUser }) => {
+  const isMy = sender._id === currentUser._id;
   return (
     <div
       className={classNames(classes.messageContainer, isMy && classes.myMessage)}
     >
       <ChatAvatar
         className={classes.avatar}
-        title={props.sender}
+        title={sender.username}
       />
       <Paper
         className={classNames(classes.root, isMy && classes.myMessageBackground)}
         elevation={1}
       >
         <Typography variant="subtitle2" component="h3">
-          {props.sender}
+          {sender.username}
         </Typography>
-        <Typography component="p">
-          {props.content}
+        <Typography component="p" className={!content ? classes.emptyMessage : ''}>
+          {content || 'Message is empty'}
         </Typography>
       </Paper>
     </div>

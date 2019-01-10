@@ -24,7 +24,7 @@ export const fetchAllChats = () => {
   return (dispatch, getState) => {
     const { token } = getState().auth;
     dispatch({
-      type: types.FETCH_MY_CHATS_PENDING,
+      type: types.FETCH_ALL_CHATS_PENDING,
     });
     return api('/chats', token)
       .then(data => dispatch({
@@ -74,5 +74,33 @@ export const setActiveChat = (id) => {
           payload: data,
         });
       });
+  };
+};
+
+
+export const createChat = (title) => {
+  return (dispatch, getState) => {
+    const { token } = getState().auth;
+    dispatch({
+      type: types.CREATE_CHAT_PENDING,
+    });
+    return api(
+      `/chats`,
+      token,
+      { method: 'POST' },
+      { data: { title } }
+    )
+      .then(data => {
+        dispatch({
+          type: types.CREATE_CHAT_SUCCESS,
+          payload: data
+        });
+        return data;
+      })
+      .then(data => dispatch(setActiveChat(data.chat._id)))
+      .catch(reason => dispatch({
+        type: types.CREATE_CHAT_FAILURE,
+        payload: reason,
+      }));
   };
 };

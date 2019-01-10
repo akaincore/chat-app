@@ -37,6 +37,15 @@ const auth = (state = initialState, action) => {
         token: null,
       };
     }
+    case types.UPDATE_USER_SUCCESS: {
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          ...action.payload.user,
+        }
+      }
+    }
     default: {
       return state;
     }
@@ -44,3 +53,5 @@ const auth = (state = initialState, action) => {
 };
 
 export default auth;
+
+export const getCurrentUser = (state) => state.user;

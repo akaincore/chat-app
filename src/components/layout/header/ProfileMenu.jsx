@@ -3,8 +3,8 @@ import Button from '@material-ui/core/Button';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-
 import { withStyles } from '@material-ui/core/styles';
+import UserFormModal from './UserFormModal';
 
 const styles = () => ({});
 
@@ -12,23 +12,68 @@ class ProfileMenu extends React.Component {
 
   state = {
     anchorEl: null,
+    modalOpen: false,
+    userForm: {
+      username: '',
+      firstName: '',
+      lastName: '',
+    },
+  };
+
+  handleModalOpen = () => {
+    this.setState({ modalOpen: true });
+    this.handleMenuClose();
+  };
+
+  handleModalClose = () => {
+    this.setState({ modalOpen: false });
+  };
+
+  onUserFieldChange = (event) => {
+    event.persist();
+    const { name, value } = event.target;
+    console.log(name, value);
+    this.setState((prevState) => ({
+      userForm: {
+        ...prevState.userForm,
+        [name]: value,
+      },
+    }));
+  };
+
+  handleUpdateUser = () => {
+    const { updateUser } = this.props;
+    updateUser(this.state.userForm);
+    this.handleModalClose();
   };
 
   handleClick = event => {
     this.setState({ anchorEl: event.currentTarget });
   };
 
-  handleClose = () => {
+  handleMenuClose = () => {
     this.setState({ anchorEl: null });
   };
 
   handleLogout = () => {
     this.props.logout();
-    this.handleClose();
+    this.handleMenuClose();
   };
 
+  componentWillReceiveProps(nextProps) {
+    const { username, firstName, lastName } = nextProps.currentUser || {};
+    this.setState({
+      ...this.state,
+      userForm: {
+        username,
+        firstName,
+        lastName,
+      },
+    });
+  }
+
   render() {
-    const { anchorEl } = this.state;
+    const { anchorEl, modalOpen, userForm } = this.state;
     return (
       <div>
         <Button
@@ -42,11 +87,18 @@ class ProfileMenu extends React.Component {
           id="simple-menu"
           anchorEl={anchorEl}
           open={Boolean(anchorEl)}
-          onClose={this.handleClose}
+          onClose={this.handleMenuClose}
         >
-          <MenuItem onClick={this.handleClose}>Edit profile</MenuItem>
+          <MenuItem onClick={this.handleModalOpen}>Edit profile</MenuItem>
           <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
         </Menu>
+        <UserFormModal
+          modalOpen={modalOpen}
+          handleModalClose={this.handleModalClose}
+          userForm={userForm}
+          onUserFieldChange={this.onUserFieldChange}
+          handleUpdateUser={this.handleUpdateUser}
+        />
       </div>
     );
   }

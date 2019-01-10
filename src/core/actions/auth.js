@@ -93,6 +93,9 @@ export const receiveAuth = () => {
         type: types.RECEIVE_AUTH_FAILURE,
       });
     }
+    dispatch({
+      type: types.RECEIVE_AUTH_PENDING,
+    });
     return api(
       '/users/me',
       token
@@ -103,6 +106,29 @@ export const receiveAuth = () => {
       }))
       .catch(reason => dispatch({
         type: types.RECEIVE_AUTH_FAILURE,
+        payload: reason
+      }));
+  };
+};
+
+export const updateUser = (payload) => {
+  return (dispatch, getState) => {
+    const { token } = getState().auth;
+    dispatch({
+      type: types.UPDATE_USER_PENDING,
+    });
+    return api(
+      '/users/me',
+      token,
+      { method: 'POST' },
+      { data: payload }
+    )
+      .then(json => dispatch({
+        type: types.UPDATE_USER_SUCCESS,
+        payload: json,
+      }))
+      .catch(reason => dispatch({
+        type: types.UPDATE_USER_FAILURE,
         payload: reason
       }));
   };

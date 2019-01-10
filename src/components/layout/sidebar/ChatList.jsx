@@ -10,29 +10,29 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
     overflowY: 'auto',
   },
+  chatList: {
+    paddingBottom: '60px',
+  },
 });
 
 class ChatList extends React.Component {
 
-  state = {
-    selectedIndex: 1,
-  };
-
-  handleListItemClick = (event, index) => {
-    this.setState({ selectedIndex: index });
-  };
-
   render() {
-    const { classes, chats } = this.props;
+    const {
+      classes,
+      chats,
+      activeChat,
+      setActiveChat,
+    } = this.props;
     return (
       <div className={classes.root}>
-        <List>
-          {chats.map((chat, index) => {
+        <List className={classes.chatList}>
+          {chats.map((chat) => {
             return (
               <ChatListItem
-                key={index}
-                selected={this.state.selectedIndex === index}
-                onClick={event => this.handleListItemClick(event, index)}
+                key={chat._id}
+                selected={activeChat && activeChat._id === chat._id}
+                onClick={() => {setActiveChat(chat._id);}}
                 title={chat.title}
                 hint={'some additional info'}
               />

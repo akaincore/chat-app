@@ -13,3 +13,7 @@ export const SIGNUP_FAILURE = Symbol('auth/SIGNUP_FAILURE');
 export const RECEIVE_AUTH_PENDING = Symbol('auth/RECEIVE_AUTH_PENDING');
 export const RECEIVE_AUTH_SUCCESS = Symbol('auth/RECEIVE_AUTH_SUCCESS');
 export const RECEIVE_AUTH_FAILURE = Symbol('auth/RECEIVE_AUTH_FAILURE');
+
+export const UPDATE_USER_PENDING = Symbol('auth/UPDATE_USER_PENDING');
+export const UPDATE_USER_SUCCESS = Symbol('auth/UPDATE_USER_SUCCESS');
+export const UPDATE_USER_FAILURE = Symbol('auth/UPDATE_USER_FAILURE');
