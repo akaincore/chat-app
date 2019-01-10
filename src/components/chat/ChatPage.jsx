@@ -1,8 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { Redirect } from 'react-router-dom';
-import DrawerLeft from '../layout/sidebar/Drawer';
-import Header from '../layout/Header';
+import SideBar from '../layout/sidebar/SideBar';
+import Header from '../layout/header/Header';
 import mockData from '../../mock-data';
 import Chat from './Chat';
 
@@ -20,21 +19,31 @@ const styles = () => ({
   }
 });
 
-const ChatPage = ({ classes, isAuthenticated }) => {
-  if (!isAuthenticated) {
+class ChatPage extends React.Component {
+
+  componentDidMount() {
+    const { fetchAllChats, fetchMyChats } = this.props;
+    Promise.all([
+      fetchAllChats(),
+      fetchMyChats(),
+    ]);
+  }
+
+  render() {
+    const { classes, chats, isAuthenticated, logout } = this.props;
     return (
-      <Redirect to={'/auth'} />
+      <div className={classes.container}>
+        <SideBar chats={chats} />
+        <div className={classes.contentWrapper}>
+          <Header
+            logout={logout}
+            isAuthenticated={isAuthenticated}
+          />
+          <Chat messages={[]} />
+        </div>
+      </div>
     );
   }
-  return (
-    <div className={classes.container}>
-      <DrawerLeft chats={mockData.chats} />
-      <div className={classes.contentWrapper}>
-        <Header />
-        <Chat messages={mockData.messages} />
-      </div>
-    </div>
-  );
-};
+}
 
 export default withStyles(styles)(ChatPage);

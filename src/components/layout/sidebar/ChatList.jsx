@@ -23,11 +23,11 @@ class ChatList extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, chats } = this.props;
     return (
       <div className={classes.root}>
         <List>
-          {this.props.chats.map((chat, index) => {
+          {chats.map((chat, index) => {
             return (
               <ChatListItem
                 key={index}

@@ -8,6 +8,8 @@ import RestoreIcon from '@material-ui/icons/Restore';
 const styles = {
   root: {
     width: '100%',
+    position: 'absolute',
+    bottom: 0,
   },
 };
 

@@ -1,27 +1,17 @@
-import fetch from 'isomorphic-fetch';
-import * as types from './action-types';
+import * as types from './types';
+import api from '../utils/api';
 
 export const login = (username, password) => {
   return (dispatch) => {
     dispatch({
       type: types.LOGIN_PENDING,
     });
-    let url = 'http://10.102.100.176:9999/v1/login';
-    return fetch(url, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify({ username, password }),
-    })
-      .then(response => response.json())
-      .then(json => {
-        if (json.success) {
-          return json;
-        }
-        throw new Error(json.message);
-      })
+    return api(
+      '/login',
+      null,
+      { method: 'POST' },
+      { username, password }
+    )
       .then(json => {
         if (!json.token) {
           throw new Error('No token provided');
@@ -40,10 +30,30 @@ export const login = (username, password) => {
 };
 
 export const logout = () => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     dispatch({
       type: types.LOGOUT_PENDING
     });
+    const { token } = getState().auth;
+    if (!token) {
+      dispatch({
+        type: types.LOGOUT_FAILURE,
+      });
+    }
+    return api(
+      '/logout',
+      token
+    )
+      .then(() => {
+        localStorage.removeItem('token');
+        dispatch({
+          type: types.LOGOUT_SUCCESS,
+        });
+      })
+      .catch(reason => dispatch({
+        type: types.LOGOUT_FAILURE,
+        payload: reason
+      }));
   };
 };
 
@@ -52,22 +62,12 @@ export const signup = (username, password) => {
     dispatch({
       type: types.SIGNUP_PENDING,
     });
-    let url = 'http://10.102.100.176:9999/v1/signup';
-    return fetch(url, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify({ username, password }),
-    })
-      .then(response => response.json())
-      .then(json => {
-        if (json.success) {
-          return json;
-        }
-        throw new Error(json.message);
-      })
+    return api(
+      '/signup',
+      null,
+      { method: 'POST' },
+      { username, password }
+    )
       .then(json => {
         if (!json.token) {
           throw new Error('No token provided');
@@ -80,6 +80,29 @@ export const signup = (username, password) => {
       })
       .catch(reason => dispatch({
         type: types.SIGNUP_FAILURE,
+        payload: reason
+      }));
+  };
+};
+
+export const receiveAuth = () => {
+  return (dispatch, getState) => {
+    const { token } = getState().auth;
+    if (!token) {
+      dispatch({
+        type: types.RECEIVE_AUTH_FAILURE,
+      });
+    }
+    return api(
+      '/users/me',
+      token
+    )
+      .then(json => dispatch({
+        type: types.RECEIVE_AUTH_SUCCESS,
+        payload: json,
+      }))
+      .catch(reason => dispatch({
+        type: types.RECEIVE_AUTH_FAILURE,
         payload: reason
       }));
   };

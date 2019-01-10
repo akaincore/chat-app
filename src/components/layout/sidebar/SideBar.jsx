@@ -18,10 +18,10 @@ const styles = theme => ({
   },
 });
 
-class DrawerLeft extends React.Component {
+class SideBar extends React.Component {
 
   render() {
-    const { classes } = this.props;
+    const { classes, chats } = this.props;
 
     return (
       <Drawer
@@ -34,7 +34,7 @@ class DrawerLeft extends React.Component {
       >
         <SearchInput />
         <Divider />
-        <ChatList chats={this.props.chats} />
+        <ChatList chats={chats} />
         <Divider />
         <AddChat />
         <BottomNav />
@@ -44,4 +44,4 @@ class DrawerLeft extends React.Component {
 }
 
 
-export default withStyles(styles, { withTheme: true })(DrawerLeft);
+export default withStyles(styles, { withTheme: true })(SideBar);

@@ -3,6 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Message from './Message';
 import MessageInput from './MessageInput';
+import Paper from '@material-ui/core/Paper';
 
 const styles = theme => ({
   root: {
@@ -13,12 +14,23 @@ const styles = theme => ({
   },
   list: {
     paddingBottom: '100px',
-  }
+  },
+  noChatsMessage: {
+    width: '50%',
+    margin: '200px auto',
+    padding: '50px',
+    textAlign: 'center',
+  },
 });
 
 const Chat = ({ classes, messages }) => (
   <main className={classes.root}>
     <List className={classes.list}>
+      {!messages.length &&
+      <Paper className={classes.noChatsMessage}>
+        There is no messages yet
+      </Paper>
+      }
       {messages.map((message, index) => {
         return (
           <Message

@@ -1,4 +1,4 @@
-import * as types from '../actions/action-types';
+import * as types from '../actions/types';
 
 const token = localStorage.getItem('token');
 
@@ -10,9 +10,7 @@ const initialState = {
 
 const auth = (state = initialState, action) => {
   switch (action.type) {
-    case types.LOGIN_PENDING: {
-      return state;
-    }
+    case types.SIGNUP_SUCCESS:
     case types.LOGIN_SUCCESS: {
       return {
         ...state,
@@ -21,34 +19,22 @@ const auth = (state = initialState, action) => {
         token: action.payload.token,
       };
     }
+    case types.RECEIVE_AUTH_SUCCESS: {
+      return {
+        ...state,
+        isAuthenticated: true,
+        user: action.payload.user,
+      }
+    }
+    case types.LOGOUT_SUCCESS:
+    case types.SIGNUP_FAILURE:
+    case types.RECEIVE_AUTH_FAILURE:
     case types.LOGIN_FAILURE: {
       return {
         ...state,
         isAuthenticated: false,
         user: null,
-        token: '',
-      };
-    }
-    case types.SIGNUP_PENDING: {
-      return state;
-    }
-    case types.SIGNUP_SUCCESS: {
-      return {
-        ...state,
-        isAuthenticated: true,
-        user: action.payload.user,
-        token: action.payload.token,
-      };
-    }
-    case types.SIGNUP_FAILURE: {
-      return { ...state };
-    }
-    case types.LOGOUT_SUCCESS: {
-      return {
-        ...state,
-        isAuthenticated: false,
-        user: null,
-        token: '',
+        token: null,
       };
     }
     default: {

@@ -4,9 +4,9 @@ import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Grid from '@material-ui/core/Grid';
-import Header from '../layout/Header';
+import Header from '../layout/header/Header';
 import AuthForm from './AuthForm';
-import getFieldsInitialState from '../../utils/fields';
+import getFieldsInitialState from '../utils/fields';
 import { Redirect } from 'react-router-dom';
 
 const styles = () => ({
