@@ -53,5 +53,3 @@ const auth = (state = initialState, action) => {
 };
 
 export default auth;
-
-export const getCurrentUser = (state) => state.user;

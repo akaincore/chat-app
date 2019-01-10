@@ -32,16 +32,23 @@ class Chat extends React.Component {
   }
 
   render () {
-    const { classes, activeChat, currentUser } = this.props;
+    const {
+      classes,
+      messages,
+      sendMessage,
+      joinChat,
+      activeChat,
+      currentUser
+    } = this.props;
     return (
       <main className={classes.root}>
         <List className={classes.list}>
-          {!activeChat.messages.length &&
+          {!messages.length &&
           <PaperTip
             message={'There is no messages yet'}
           />
           }
-          {activeChat.messages.length && activeChat.messages.map((message) => (
+          {messages.length && messages.map((message) => (
             <Message
               key={message._id}
               sender={message.sender}
@@ -53,7 +60,11 @@ class Chat extends React.Component {
             ref={(el) => { this.messagesEnd = el; }}
           />
         </List>
-        <MessageInput />
+        <MessageInput
+          sendMessage={(content) => sendMessage(activeChat._id, content)}
+          joinChat={joinChat}
+          currentUser={currentUser}
+        />
       </main>
     );
   }

@@ -22,7 +22,12 @@ const styles = theme => ({
 });
 
 const MessageInput = props => {
-  const { classes } = props;
+  const {
+    classes,
+    sendMessage,
+    joinChat,
+    currentUser,
+  } = props;
   return (
     <div className={classes.container}>
       <Paper className={classes.paper}>

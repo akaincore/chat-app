@@ -62,7 +62,6 @@ class SideBar extends React.Component {
       chats,
       activeChat,
       myChats,
-      setActiveChat,
     } = this.props;
     const { value, modalOpen, newChatTitle } = this.state;
     const tabChats = value === 0 ? myChats : chats;
@@ -80,7 +79,6 @@ class SideBar extends React.Component {
         <ChatList
           chats={tabChats}
           activeChat={activeChat}
-          setActiveChat={setActiveChat}
         />
         <Divider />
         <AddChat

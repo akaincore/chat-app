@@ -22,6 +22,12 @@ const styles = theme => ({
   avatar: {
     margin: '0 20px',
   },
+  statusMessage: {
+    width: '100%',
+    textAlign: 'center',
+    fontStyle: 'italic',
+    color: '#bbb',
+  },
   myMessage: {
     flexDirection: 'row-reverse',
   },
@@ -34,7 +40,23 @@ const styles = theme => ({
   },
 });
 
-const Message = ({ classes, sender, content, currentUser }) => {
+const Message = ({ classes, sender, content, currentUser, statusMessage }) => {
+
+  if (statusMessage) {
+    return (
+      <div className={classNames(classes.messageContainer)}>
+        <Typography className={classes.statusMessage}>
+          <Typography variant="subtitle2" component="h3">
+            {sender.username}
+          </Typography>
+          <Typography component="p" className={!content ? classes.emptyMessage : ''}>
+            {content || 'Message is empty'}
+          </Typography>
+        </Typography>
+      </div>
+    );
+  }
+
   const isMy = sender._id === currentUser._id;
   return (
     <div

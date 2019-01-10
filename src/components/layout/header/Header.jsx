@@ -4,6 +4,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import ProfileMenu from './ProfileMenu';
+import ChatMenu from './ChatMenu';
 
 const styles = () => ({
   appBar: {
@@ -13,6 +14,10 @@ const styles = () => ({
     padding: '0 50px',
     display: 'flex',
     justifyContent: 'space-between',
+  },
+  titleWrapper: {
+    display: 'flex',
+    alignItems: 'center',
   },
 });
 
@@ -29,9 +34,14 @@ const Header = (props) => {
   return (
     <AppBar position="static" className={classes.appBar}>
       <Toolbar className={classes.toolBar}>
-        <Typography variant="h6" color="inherit">
-          {activeChat ? activeChat.title : 'Chat App'}
-        </Typography>
+        <div className={classes.titleWrapper}>
+          <Typography variant="h6" color="inherit">
+            {activeChat ? activeChat.title : 'Chat App'}
+          </Typography>
+          {/*{activeChat &&*/}
+          <ChatMenu />
+          {/*}*/}
+        </div>
         {isAuthenticated &&
         <ProfileMenu
           currentUser={currentUser}

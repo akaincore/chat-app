@@ -52,10 +52,13 @@ export const fetchChat = (id) => {
         });
         return data;
       })
-      .catch(reason => dispatch({
-        type: types.FETCH_CHAT_FAILURE,
-        payload: reason,
-      }));
+      .catch(reason => {
+        dispatch({
+          type: types.FETCH_CHAT_FAILURE,
+          payload: reason,
+        });
+        dispatch(redirect('/chat'));
+      });
   };
 };
 
@@ -83,6 +86,7 @@ export const createChat = (title) => {
     const { token } = getState().auth;
     dispatch({
       type: types.CREATE_CHAT_PENDING,
+      payload: { title },
     });
     return api(
       `/chats`,
@@ -100,6 +104,116 @@ export const createChat = (title) => {
       .then(data => dispatch(setActiveChat(data.chat._id)))
       .catch(reason => dispatch({
         type: types.CREATE_CHAT_FAILURE,
+        payload: reason,
+      }));
+  };
+};
+
+export const deleteChat = (id) => {
+  return (dispatch, getState) => {
+    const { token } = getState().auth;
+    dispatch({
+      type: types.DELETE_CHAT_PENDING,
+      payload: { id },
+    });
+    return api(
+      `/chats`,
+      token,
+      { method: 'DELETE' }
+    )
+      .then(data => {
+        dispatch({
+          type: types.DELETE_CHAT_SUCCESS,
+          payload: data
+        });
+        dispatch({
+          type: types.UNSET_ACTIVE_CHAT,
+        });
+        return data;
+      })
+      .catch(reason => dispatch({
+        type: types.DELETE_CHAT_FAILURE,
+        payload: reason,
+      }));
+  };
+};
+
+export const joinChat = (id) => {
+  return (dispatch, getState) => {
+    const { token } = getState().auth;
+    dispatch({
+      type: types.JOIN_CHAT_PENDING,
+      payload: { id },
+    });
+    return api(
+      `/chats/${id}/join`,
+      token
+    )
+      .then(data => {
+        dispatch({
+          type: types.JOIN_CHAT_SUCCESS,
+          payload: data
+        });
+        dispatch(redirect(`/chat/${id}`));
+        return data;
+      })
+      .catch(reason => dispatch({
+        type: types.JOIN_CHAT_FAILURE,
+        payload: reason,
+      }));
+  };
+};
+
+export const leaveChat = (id) => {
+  return (dispatch, getState) => {
+    const { token } = getState().auth;
+    dispatch({
+      type: types.LEAVE_CHAT_PENDING,
+      payload: { id },
+    });
+    return api(
+      `/chats/${id}/leave`,
+      token
+    )
+      .then(data => {
+        dispatch({
+          type: types.LEAVE_CHAT_SUCCESS,
+          payload: data
+        });
+        dispatch({
+          type: types.UNSET_ACTIVE_CHAT,
+        });
+        return data;
+      })
+      .catch(reason => dispatch({
+        type: types.LEAVE_CHAT_FAILURE,
+        payload: reason,
+      }));
+  };
+};
+
+export const sendMessage = (chatId, content) => {
+  return (dispatch, getState) => {
+    const { token } = getState().auth;
+    dispatch({
+      type: types.SEND_MESSAGE_PENDING,
+      payload: { chatId, content },
+    });
+    return api(
+      `/chats/${chatId}`,
+      token,
+      { method: 'POST' },
+      { data: { content } }
+    )
+      .then(data => {
+        dispatch({
+          type: types.SEND_MESSAGE_SUCCESS,
+          payload: data
+        });
+        dispatch(fetchChat(chatId));
+      })
+      .catch(reason => dispatch({
+        type: types.SEND_MESSAGE_FAILURE,
         payload: reason,
       }));
   };

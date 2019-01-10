@@ -1,21 +1,24 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ChatAvatar from '../../common/ChatAvatar';
 
-const ChatListItem = props => {
+const ChatListItem = ({ chatId, selected, onClick, title, hint }) => {
   return (
     <ListItem
       button
-      selected={props.selected}
-      onClick={props.onClick}
+      component={Link}
+      to={`/chat/${chatId}`}
+      selected={selected}
+      onClick={onClick}
     >
       <ChatAvatar
-        title={props.title}
+        title={title}
       />
       <ListItemText
-        primary={props.title}
-        secondary={props.hint}
+        primary={title}
+        secondary={hint}
       />
     </ListItem>
   );

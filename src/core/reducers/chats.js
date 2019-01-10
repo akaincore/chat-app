@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import * as types from '../actions/types';
 
 const initialState = {
-  activeId: '',
+  activeId: null,
   allIds: [],
   myIds: [],
   byIds: {}
@@ -10,11 +10,13 @@ const initialState = {
 
 const activeId = (state = initialState.activeId, action) => {
   switch (action.type) {
+    case types.JOIN_CHAT_SUCCESS:
     case types.SET_ACTIVE_CHAT: {
       return action.payload.chat._id;
     }
+    case types.DELETE_CHAT_SUCCESS:
     case types.UNSET_ACTIVE_CHAT: {
-      return '';
+      return null;
     }
     default: {
       return state;
@@ -33,6 +35,9 @@ const allIds = (state = initialState.allIds, action) => {
         action.payload.chat._id
       ];
     }
+    case types.DELETE_CHAT_SUCCESS: {
+      return state.filter(id => id !== action.payload.chat._id);
+    }
     default: {
       return state;
     }
@@ -44,11 +49,16 @@ const myIds = (state = initialState.myIds, action) => {
     case types.FETCH_MY_CHATS_SUCCESS: {
       return action.payload.chats.map(getChatId);
     }
+    case types.JOIN_CHAT_SUCCESS:
     case types.CREATE_CHAT_SUCCESS: {
       return [
         ...state,
         action.payload.chat._id
       ];
+    }
+    case types.DELETE_CHAT_SUCCESS:
+    case types.LEAVE_CHAT_SUCCESS: {
+      return state.filter(id => id !== action.payload.chat._id);
     }
     default: {
       return state;
@@ -79,6 +89,11 @@ const byIds = (state = initialState.byIds, action) => {
         ...state,
         [action.payload.chat._id]: action.payload.chat,
       };
+    }
+    case types.DELETE_CHAT_SUCCESS: {
+      const newState = { ...state };
+      delete newState[action.payload.chat._id];
+      return newState;
     }
     default: {
       return state;

@@ -4,7 +4,6 @@ import SideBar from '../layout/sidebar/SideBar';
 import Header from '../layout/header/Header';
 import Chat from './Chat';
 import PaperTip from '../common/PaperTip';
-import { createChat } from '../../core/actions';
 
 const styles = () => ({
   container: {
@@ -23,11 +22,32 @@ const styles = () => ({
 class ChatPage extends React.Component {
 
   componentDidMount() {
-    const { fetchAllChats, fetchMyChats } = this.props;
+    const {
+      match,
+      fetchAllChats,
+      setActiveChat,
+      fetchMyChats
+    } = this.props;
     Promise.all([
       fetchAllChats(),
       fetchMyChats(),
-    ]);
+    ])
+      .then(() => {
+        const { chatId } = match.params;
+        if (chatId) {
+          setActiveChat(chatId);
+        }
+      });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const {
+      match: { params }, setActiveChat,
+    } = this.props;
+    const { params: nextParams } = nextProps.match;
+    if (nextParams.chatId && params.chatId !== nextParams.chatId) {
+      setActiveChat(nextParams.chatId);
+    }
   }
 
   render() {
@@ -35,12 +55,14 @@ class ChatPage extends React.Component {
       classes,
       chats,
       activeChat,
-      setActiveChat,
+      messages,
       myChats,
       createChat,
       isAuthenticated,
       currentUser,
       updateUser,
+      sendMessage,
+      joinChat,
       logout
     } = this.props;
     return (
@@ -48,7 +70,6 @@ class ChatPage extends React.Component {
         <SideBar
           chats={chats}
           activeChat={activeChat}
-          setActiveChat={setActiveChat}
           myChats={myChats}
           createChat={createChat}
         />
@@ -62,8 +83,11 @@ class ChatPage extends React.Component {
           />
           {activeChat &&
           <Chat
+            messages={messages}
             activeChat={activeChat}
             currentUser={currentUser}
+            sendMessage={sendMessage}
+            joinChat={joinChat}
           />
           }
           {!activeChat &&

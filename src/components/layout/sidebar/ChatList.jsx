@@ -22,7 +22,6 @@ class ChatList extends React.Component {
       classes,
       chats,
       activeChat,
-      setActiveChat,
     } = this.props;
     return (
       <div className={classes.root}>
@@ -31,10 +30,9 @@ class ChatList extends React.Component {
             return (
               <ChatListItem
                 key={chat._id}
+                chatId={chat._id}
                 selected={activeChat && activeChat._id === chat._id}
-                onClick={() => {setActiveChat(chat._id);}}
                 title={chat.title}
-                hint={'some additional info'}
               />
             );
           })}
