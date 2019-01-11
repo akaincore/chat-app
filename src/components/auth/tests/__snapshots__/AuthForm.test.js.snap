@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AuthForm /> renders correctly 1`] = `
+<form
+  className="AuthForm-authForm-94"
+  onSubmit={[MockFunction]}
+>
+  <div
+    className="MuiFormControl-root-97 MuiFormControl-marginNormal-98 MuiFormControl-fullWidth-100 AuthForm-textField-93"
+  >
+    <label
+      className="MuiFormLabel-root-112 MuiFormLabel-filled-116 MuiFormLabel-required-117 MuiInputLabel-required-105 MuiInputLabel-root-101 MuiInputLabel-formControl-106 MuiInputLabel-animated-109 MuiInputLabel-shrink-108"
+      data-shrink={true}
+    >
+      placeholder
+      <span
+        className="MuiFormLabel-asterisk-118"
+      >
+         *
+      </span>
+    </label>
+    <div
+      className="MuiInputBase-root-132 MuiInput-root-119 MuiInput-underline-123 MuiInputBase-fullWidth-141 MuiInput-fullWidth-126 MuiInputBase-formControl-133 MuiInput-formControl-120"
+      onClick={[Function]}
+    >
+      <input
+        aria-invalid={false}
+        className="MuiInputBase-input-142 MuiInput-input-127"
+        disabled={false}
+        name="field"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        placeholder="placeholder"
+        required={true}
+        type="text"
+        value="baz"
+      />
+    </div>
+  </div>
+  <button
+    className="MuiButtonBase-root-175 MuiButton-root-149 MuiButton-contained-160 MuiButton-containedPrimary-161 MuiButton-raised-163 MuiButton-raisedPrimary-164 AuthForm-submitButton-95"
+    disabled={false}
+    onBlur={[Function]}
+    onContextMenu={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    tabIndex="0"
+    type="submit"
+  >
+    <span
+      className="MuiButton-label-150"
+    >
+      text
+    </span>
+    <span
+      className="MuiTouchRipple-root-178"
+    />
+  </button>
+</form>
+`;

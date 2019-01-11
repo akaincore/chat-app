@@ -1,7 +1,10 @@
 /* eslint-env jest */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import renderer from 'react-test-renderer';
 import Message from '../Message';
+
+jest.mock('../../common/ChatAvatar', () => () => 'ChatAvatar');
 
 const mockProps = {
   sender: {
@@ -19,8 +22,15 @@ const mockProps = {
   createdAt: '2019-01-01T00:00:00.000Z',
 };
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<Message {...mockProps} />, div);
-  ReactDOM.unmountComponentAtNode(div);
+describe('<Message />', () => {
+  it('renders without crashing', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<Message {...mockProps} />, div);
+    ReactDOM.unmountComponentAtNode(div);
+  });
+
+  it('renders correctly', () => {
+    const tree = renderer.create(<Message {...mockProps} />).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 });

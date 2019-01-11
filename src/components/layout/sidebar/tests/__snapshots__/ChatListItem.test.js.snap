@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ChatListItem /> renders correctly 1`] = `
+<a
+  className="MuiButtonBase-root-77 MuiListItem-root-65 MuiListItem-default-68 MuiListItem-gutters-73 MuiListItem-button-74"
+  href="/chat/12345"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onContextMenu={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchEnd={[Function]}
+  onTouchMove={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  tabIndex="0"
+>
+  ChatAvatar
+  <div
+    className="MuiListItemText-root-80"
+  >
+    <span
+      className="MuiTypography-root-86 MuiTypography-subheading-93 MuiListItemText-primary-83"
+    >
+      foo
+    </span>
+    <p
+      className="MuiTypography-root-86 MuiTypography-body1-95 MuiTypography-colorTextSecondary-119 MuiListItemText-secondary-84"
+    >
+      11 days ago
+    </p>
+  </div>
+  <span
+    className="MuiTouchRipple-root-122"
+  />
+</a>
+`;

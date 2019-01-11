@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ChatList /> renders correctly 1`] = `
+<div
+  className="ChatList-root-7"
+>
+  <ul
+    className="MuiList-root-9 MuiList-padding-10 ChatList-chatList-8"
+  />
+</div>
+`;

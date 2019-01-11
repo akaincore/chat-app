@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MessageInput /> renders correctly 1`] = `
+<div
+  className="MessageInput-container-67"
+>
+  <div
+    className="MuiPaper-root-70 MuiPaper-elevation2-74 MuiPaper-rounded-71 MessageInput-paper-69"
+  >
+    <button
+      className="MuiButtonBase-root-123 MuiButton-root-97 MuiButton-contained-108 MuiButton-containedPrimary-109 MuiButton-raised-111 MuiButton-raisedPrimary-112 MuiButton-fullWidth-122"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[MockFunction]}
+      onContextMenu={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex="0"
+      type="button"
+    >
+      <span
+        className="MuiButton-label-98"
+      >
+        Join
+      </span>
+      <span
+        className="MuiTouchRipple-root-126"
+      />
+    </button>
+  </div>
+</div>
+`;

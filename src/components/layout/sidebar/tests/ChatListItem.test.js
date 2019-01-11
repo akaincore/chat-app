@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { MemoryRouter } from 'react-router-dom';
+import renderer from 'react-test-renderer';
 import ChatListItem from '../ChatListItem';
 
 jest.mock('../../../common/ChatAvatar', () => () => 'ChatAvatar');
@@ -13,13 +14,26 @@ const mockProps = {
   createdAt: '2019-01-01T00:00:00.000Z',
 };
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(
-    <MemoryRouter>
-      <ChatListItem {...mockProps} />
-    </MemoryRouter>,
-    div,
-  );
-  ReactDOM.unmountComponentAtNode(div);
+describe('<ChatListItem />', () => {
+  it('renders without crashing', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(
+      <MemoryRouter>
+        <ChatListItem {...mockProps} />
+      </MemoryRouter>,
+      div,
+    );
+    ReactDOM.unmountComponentAtNode(div);
+  });
+
+  it('renders correctly', () => {
+    const tree = renderer
+      .create(
+        <MemoryRouter>
+          <ChatListItem {...mockProps} />
+        </MemoryRouter>,
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 });

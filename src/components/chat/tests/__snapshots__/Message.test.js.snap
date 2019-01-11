@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Message /> renders correctly 1`] = `
+<div
+  className="Message-messageContainer-73"
+>
+  ChatAvatar
+  <div
+    className="MuiPaper-root-80 MuiPaper-elevation1-83 MuiPaper-rounded-81 Message-root-72"
+  >
+    <h3
+      className="MuiTypography-root-107 MuiTypography-subtitle2-126"
+    >
+      me
+    </h3>
+    <p
+      className="MuiTypography-root-107 MuiTypography-body1-116 Message-emptyMessage-79"
+    >
+      Message is empty
+    </p>
+    <span
+      className="MuiTypography-root-107 MuiTypography-caption-117"
+    >
+      11 days ago
+    </span>
+  </div>
+</div>
+`;

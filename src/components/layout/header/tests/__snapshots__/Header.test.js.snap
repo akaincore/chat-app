@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header /> renders correctly 1`] = `
+<header
+  className="MuiPaper-root-92 MuiPaper-elevation4-98 MuiAppBar-root-83 MuiAppBar-positionStatic-87 MuiAppBar-colorPrimary-90 Header-appBar-80"
+>
+  <div
+    className="MuiToolbar-root-119 MuiToolbar-regular-121 MuiToolbar-gutters-120 Header-toolBar-81"
+  >
+    <div
+      className="Header-titleWrapper-82"
+    >
+      <h6
+        className="MuiTypography-root-123 MuiTypography-h6-140 MuiTypography-colorInherit-152"
+      >
+        foo
+      </h6>
+      ChatMenu
+    </div>
+  </div>
+</header>
+`;

@@ -1,6 +1,7 @@
 /* eslint-env jest */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import renderer from 'react-test-renderer';
 import Header from '../Header';
 
 jest.mock('../ChatMenu', () => () => 'ChatMenu');
@@ -26,8 +27,15 @@ const mockProps = {
   },
 };
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<Header {...mockProps} />, div);
-  ReactDOM.unmountComponentAtNode(div);
+describe('<Header />', () => {
+  it('renders without crashing', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<Header {...mockProps} />, div);
+    ReactDOM.unmountComponentAtNode(div);
+  });
+
+  it('renders correctly', () => {
+    const tree = renderer.create(<Header {...mockProps} />).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 });

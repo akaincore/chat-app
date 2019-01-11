@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SearchInput /> renders correctly 1`] = `
+<div
+  className="SearchInput-container-33"
+>
+  <div
+    className="MuiInputBase-root-48 MuiInput-root-35 MuiInput-underline-39 MuiInputBase-fullWidth-57 MuiInput-fullWidth-42 SearchInput-input-34"
+    onClick={[Function]}
+  >
+    <input
+      aria-label="Description"
+      className="MuiInputBase-input-58 MuiInput-input-43"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      placeholder="Search chats..."
+      type="text"
+      value="foo"
+    />
+  </div>
+</div>
+`;

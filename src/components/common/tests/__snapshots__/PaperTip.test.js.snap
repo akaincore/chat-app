@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PaperTip /> renders correctly 1`] = `
+<div
+  className="MuiPaper-root-30 MuiPaper-elevation2-34 MuiPaper-rounded-31 PaperTip-paperMessage-29"
+>
+  foo bar baz
+</div>
+`;

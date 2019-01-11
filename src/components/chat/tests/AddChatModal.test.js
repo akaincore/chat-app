@@ -1,6 +1,7 @@
 /* eslint-env jest */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import renderer from 'react-test-renderer';
 import AddChatModal from '../AddChatModal';
 
 const mockProps = {
@@ -11,8 +12,15 @@ const mockProps = {
   handleCreateChat: jest.fn(),
 };
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<AddChatModal {...mockProps} />, div);
-  ReactDOM.unmountComponentAtNode(div);
+describe('<AddChatModal />', () => {
+  it('renders without crashing', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<AddChatModal {...mockProps} />, div);
+    ReactDOM.unmountComponentAtNode(div);
+  });
+
+  it('renders correctly', () => {
+    const tree = renderer.create(<AddChatModal {...mockProps} />).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 });
