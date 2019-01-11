@@ -75,6 +75,7 @@ class AuthPage extends React.Component {
     error: PropTypes.instanceOf(Error),
     login: PropTypes.func.isRequired,
     signup: PropTypes.func.isRequired,
+    receiveAuth: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -86,6 +87,10 @@ class AuthPage extends React.Component {
     login: getFieldsInitialState(fields.login),
     signup: getFieldsInitialState(fields.signup),
   };
+
+  componentDidMount() {
+    this.props.receiveAuth();
+  }
 
   tabChange = (event, currentTab) => {
     this.setState({ currentTab });
