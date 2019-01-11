@@ -4,6 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import classNames from 'classnames';
 import ChatAvatar from '../common/ChatAvatar';
+import moment from 'moment';
 
 const styles = theme => ({
   root: {
@@ -40,7 +41,7 @@ const styles = theme => ({
   },
 });
 
-const Message = ({ classes, sender, content, currentUser, statusMessage }) => {
+const Message = ({ classes, sender, content, currentUser, statusMessage, createdAt }) => {
 
   if (statusMessage) {
     return (
@@ -62,6 +63,7 @@ const Message = ({ classes, sender, content, currentUser, statusMessage }) => {
       <ChatAvatar
         className={classes.avatar}
         title={sender.username}
+        id={sender._id}
       />
       <Paper
         className={classNames(classes.root, isMy && classes.myMessageBackground)}
@@ -72,6 +74,9 @@ const Message = ({ classes, sender, content, currentUser, statusMessage }) => {
         </Typography>
         <Typography component="p" className={!content ? classes.emptyMessage : ''}>
           {content || 'Message is empty'}
+        </Typography>
+        <Typography variant="caption" component="span">
+          {moment(createdAt).fromNow()}
         </Typography>
       </Paper>
     </div>

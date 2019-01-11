@@ -58,11 +58,13 @@ class ChatPage extends React.Component {
       messages,
       myChats,
       createChat,
+      deleteChat,
       isAuthenticated,
       currentUser,
       updateUser,
       sendMessage,
       joinChat,
+      leaveChat,
       logout
     } = this.props;
     return (
@@ -80,6 +82,8 @@ class ChatPage extends React.Component {
             activeChat={activeChat}
             currentUser={currentUser}
             updateUser={updateUser}
+            deleteChat={deleteChat}
+            leaveChat={leaveChat}
           />
           {activeChat &&
           <Chat

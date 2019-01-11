@@ -84,6 +84,8 @@ const byIds = (state = initialState.byIds, action) => {
         [action.payload.chat._id]: action.payload.chat,
       };
     }
+    case types.JOIN_CHAT_SUCCESS:
+    case types.LEAVE_CHAT_SUCCESS:
     case types.CREATE_CHAT_SUCCESS: {
       return {
         ...state,

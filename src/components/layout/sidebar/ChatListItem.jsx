@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ChatAvatar from '../../common/ChatAvatar';
+import moment from 'moment';
 
-const ChatListItem = ({ chatId, selected, onClick, title, hint }) => {
+const ChatListItem = ({ chatId, selected, onClick, title, createdAt }) => {
   return (
     <ListItem
       button
@@ -15,10 +16,11 @@ const ChatListItem = ({ chatId, selected, onClick, title, hint }) => {
     >
       <ChatAvatar
         title={title}
+        id={chatId}
       />
       <ListItemText
         primary={title}
-        secondary={hint}
+        secondary={moment(createdAt).fromNow()}
       />
     </ListItem>
   );

@@ -29,6 +29,8 @@ const Header = (props) => {
     currentUser,
     updateUser,
     activeChat,
+    deleteChat,
+    leaveChat,
   } = props;
 
   return (
@@ -38,9 +40,13 @@ const Header = (props) => {
           <Typography variant="h6" color="inherit">
             {activeChat ? activeChat.title : 'Chat App'}
           </Typography>
-          {/*{activeChat &&*/}
-          <ChatMenu />
-          {/*}*/}
+          {activeChat &&
+          <ChatMenu
+            currentUser={currentUser}
+            deleteChat={() => deleteChat(activeChat._id)}
+            leaveChat={() => leaveChat(activeChat._id)}
+          />
+          }
         </div>
         {isAuthenticated &&
         <ProfileMenu

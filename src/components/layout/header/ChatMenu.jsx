@@ -17,8 +17,19 @@ class ChatMenu extends React.Component {
     this.setState({ anchorEl: null });
   };
 
+  onChatLeave = () => {
+    this.props.leaveChat();
+    this.handleClose();
+  };
+
+  onChatDelete = () => {
+    this.props.deleteChat();
+    this.handleClose();
+  };
+
   render() {
     const { anchorEl } = this.state;
+    const { currentUser } = this.props;
 
     return (
       <div>
@@ -35,9 +46,12 @@ class ChatMenu extends React.Component {
           open={Boolean(anchorEl)}
           onClose={this.handleClose}
         >
-          <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-          <MenuItem onClick={this.handleClose}>My account</MenuItem>
-          <MenuItem onClick={this.handleClose}>Logout</MenuItem>
+          {currentUser.isMember &&
+          <MenuItem onClick={this.onChatLeave}>Leave chat</MenuItem>
+          }
+          {currentUser.isCreator &&
+          <MenuItem onClick={this.onChatDelete}>Delete chat</MenuItem>
+          }
         </Menu>
       </div>
     );

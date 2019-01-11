@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch';
 
 const api = (uri, token, options, payload) => {
-  const url = `http://10.102.100.176:9999/v1/${uri}`;
+  const url = `//10.102.100.176:9999/v1/${uri}`;
   const authHeaders = token ? {
     'Authorization': `Bearer ${token}`,
   } : {};

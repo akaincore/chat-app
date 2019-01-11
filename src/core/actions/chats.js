@@ -117,7 +117,7 @@ export const deleteChat = (id) => {
       payload: { id },
     });
     return api(
-      `/chats`,
+      `/chats/${id}`,
       token,
       { method: 'DELETE' }
     )
@@ -129,6 +129,7 @@ export const deleteChat = (id) => {
         dispatch({
           type: types.UNSET_ACTIVE_CHAT,
         });
+        dispatch(redirect('/chat'));
         return data;
       })
       .catch(reason => dispatch({
@@ -149,13 +150,12 @@ export const joinChat = (id) => {
       `/chats/${id}/join`,
       token
     )
-      .then(data => {
+      .then(({ chat }) => {
         dispatch({
           type: types.JOIN_CHAT_SUCCESS,
-          payload: data
+          payload: { chat }
         });
-        dispatch(redirect(`/chat/${id}`));
-        return data;
+        return chat;
       })
       .catch(reason => dispatch({
         type: types.JOIN_CHAT_FAILURE,
@@ -175,15 +175,16 @@ export const leaveChat = (id) => {
       `/chats/${id}/leave`,
       token
     )
-      .then(data => {
+      .then(({ chat }) => {
         dispatch({
           type: types.LEAVE_CHAT_SUCCESS,
-          payload: data
+          payload: { chat }
         });
         dispatch({
           type: types.UNSET_ACTIVE_CHAT,
         });
-        return data;
+        dispatch(redirect('/chat'));
+        return chat;
       })
       .catch(reason => dispatch({
         type: types.LEAVE_CHAT_FAILURE,

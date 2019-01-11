@@ -32,7 +32,7 @@ class ChatList extends React.Component {
                 key={chat._id}
                 chatId={chat._id}
                 selected={activeChat && activeChat._id === chat._id}
-                title={chat.title}
+                {...chat}
               />
             );
           })}

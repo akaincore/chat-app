@@ -55,6 +55,7 @@ class Chat extends React.Component {
               content={message.content}
               currentUser={currentUser}
               statusMessage={message.statusMessage}
+              createdAt={message.createdAt}
             />
           ))}
           <div

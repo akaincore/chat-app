@@ -31,6 +31,7 @@ class SideBar extends React.Component {
     value: 0,
     modalOpen: false,
     newChatTitle: '',
+    search: '',
   };
 
   handleModalOpen = () => {
@@ -47,6 +48,12 @@ class SideBar extends React.Component {
     });
   };
 
+  onSearch = (event) => {
+    this.setState({
+      search: event.target.value,
+    });
+  };
+
   handleCreateChat = () => {
     this.props.createChat(this.state.newChatTitle);
     this.handleModalClose();
@@ -56,6 +63,17 @@ class SideBar extends React.Component {
     this.setState({ value });
   };
 
+  filterChats = (chats) => {
+    return chats
+      .filter(chat => chat.title
+        .toLowerCase()
+        .includes(this.state.search.toLowerCase())
+      )
+      .sort((one, two) =>
+        one.title.toLowerCase() <= two.title.toLowerCase() ? -1 : 1
+      );
+  };
+
   render() {
     const {
       classes,
@@ -63,7 +81,7 @@ class SideBar extends React.Component {
       activeChat,
       myChats,
     } = this.props;
-    const { value, modalOpen, newChatTitle } = this.state;
+    const { value, modalOpen, newChatTitle, search } = this.state;
     const tabChats = value === 0 ? myChats : chats;
     return (
       <Drawer
@@ -74,10 +92,13 @@ class SideBar extends React.Component {
           paper: classes.drawerPaper,
         }}
       >
-        <SearchInput />
+        <SearchInput
+          value={search}
+          onSearch={this.onSearch}
+        />
         <Divider />
         <ChatList
-          chats={tabChats}
+          chats={this.filterChats(tabChats)}
           activeChat={activeChat}
         />
         <Divider />
