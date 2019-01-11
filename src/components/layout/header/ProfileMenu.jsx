@@ -77,9 +77,11 @@ class ProfileMenu extends React.Component {
 
   render() {
     const { anchorEl, modalOpen, userForm } = this.state;
+    const { disabled } = this.props;
     return (
       <div>
         <Button
+          disabled={disabled}
           aria-owns={anchorEl ? 'simple-menu' : undefined}
           aria-haspopup="true"
           onClick={this.handleClick}

@@ -38,7 +38,8 @@ class Chat extends React.Component {
       sendMessage,
       joinChat,
       activeChat,
-      currentUser
+      currentUser,
+      isConnected,
     } = this.props;
     return (
       <main className={classes.root}>
@@ -65,7 +66,8 @@ class Chat extends React.Component {
           />
         </List>
         <MessageInput
-          sendMessage={(content) => sendMessage(activeChat._id, content)}
+          disabled={!isConnected}
+          sendMessage={sendMessage}
           joinChat={() => joinChat(activeChat._id)}
           currentUser={currentUser}
         />

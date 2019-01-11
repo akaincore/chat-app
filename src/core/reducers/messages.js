@@ -4,7 +4,7 @@ const initialState = [];
 
 const messages = (state = initialState, action) => {
   switch (action.type) {
-    case types.SEND_MESSAGE_SUCCESS: {
+    case types.RECEIVE_MESSAGE: {
       return [
         ...state,
         action.payload.message,

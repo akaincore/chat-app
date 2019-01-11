@@ -31,6 +31,7 @@ const Header = (props) => {
     activeChat,
     deleteChat,
     leaveChat,
+    isConnected,
   } = props;
 
   return (
@@ -42,6 +43,7 @@ const Header = (props) => {
           </Typography>
           {activeChat &&
           <ChatMenu
+            disabled={!isConnected}
             currentUser={currentUser}
             deleteChat={() => deleteChat(activeChat._id)}
             leaveChat={() => leaveChat(activeChat._id)}
@@ -50,6 +52,7 @@ const Header = (props) => {
         </div>
         {isAuthenticated &&
         <ProfileMenu
+          disabled={!isConnected}
           currentUser={currentUser}
           updateUser={updateUser}
           logout={logout}

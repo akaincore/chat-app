@@ -48,6 +48,7 @@ class MessageInput extends React.Component {
       classes,
       joinChat,
       currentUser,
+      disabled,
     } = this.props;
     const { message } = this.state;
     return (
@@ -55,6 +56,7 @@ class MessageInput extends React.Component {
         <Paper className={classes.paper}>
           {currentUser.isChatMember &&
           <Input
+            disabled={disabled}
             fullWidth={true}
             placeholder="Type message..."
             className={classes.input}
@@ -68,6 +70,7 @@ class MessageInput extends React.Component {
           }
           {!currentUser.isChatMember &&
           <Button
+            disabled={disabled}
             onClick={joinChat}
             fullWidth
             variant="contained"

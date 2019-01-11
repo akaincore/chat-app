@@ -22,6 +22,7 @@ class ChatList extends React.Component {
       classes,
       chats,
       activeChat,
+      disabled,
     } = this.props;
     return (
       <div className={classes.root}>
@@ -29,6 +30,7 @@ class ChatList extends React.Component {
           {chats.map((chat) => {
             return (
               <ChatListItem
+                disabled={disabled}
                 key={chat._id}
                 chatId={chat._id}
                 selected={activeChat && activeChat._id === chat._id}

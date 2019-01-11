@@ -20,11 +20,13 @@ const AddChat = ({
                    handleModalClose,
                    title,
                    onTitleChange,
-                   handleCreateChat
+                   handleCreateChat,
+                   disabled,
                  }) => {
   return (
     <div>
     <Button
+      disabled={disabled}
       variant="fab"
       color="primary"
       aria-label="Add"

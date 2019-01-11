@@ -2,7 +2,12 @@ import * as types from './types';
 import api from '../utils/api';
 
 export const login = (username, password) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const { isFetching } = getState().services;
+    if (isFetching.login) {
+      return Promise.resolve();
+    }
+
     dispatch({
       type: types.LOGIN_PENDING,
     });
@@ -31,6 +36,11 @@ export const login = (username, password) => {
 
 export const logout = () => {
   return (dispatch, getState) => {
+    const { isFetching } = getState().services;
+    if (isFetching.logout) {
+      return Promise.resolve();
+    }
+
     dispatch({
       type: types.LOGOUT_PENDING
     });
@@ -58,7 +68,12 @@ export const logout = () => {
 };
 
 export const signup = (username, password) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const { isFetching } = getState().services;
+    if (isFetching.signup) {
+      return Promise.resolve();
+    }
+
     dispatch({
       type: types.SIGNUP_PENDING,
     });
@@ -87,6 +102,11 @@ export const signup = (username, password) => {
 
 export const receiveAuth = () => {
   return (dispatch, getState) => {
+    const { isFetching } = getState().services;
+    if (isFetching.receiveAuth) {
+      return Promise.resolve();
+    }
+
     const { token } = getState().auth;
     if (!token) {
       dispatch({
@@ -113,6 +133,11 @@ export const receiveAuth = () => {
 
 export const updateUser = (payload) => {
   return (dispatch, getState) => {
+    const { isFetching } = getState().services;
+    if (isFetching.updateUser) {
+      return Promise.resolve();
+    }
+
     const { token } = getState().auth;
     dispatch({
       type: types.UPDATE_USER_PENDING,

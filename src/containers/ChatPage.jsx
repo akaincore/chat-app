@@ -11,7 +11,10 @@ import {
   updateUser,
   createChat,
   deleteChat,
-  sendMessage
+  sendMessage,
+  mountChat,
+  unmountChat,
+  socketsConnect,
 } from '../core/actions';
 import * as fromChats from '../core/reducers/chats';
 import * as fromState from '../core/reducers';
@@ -30,6 +33,8 @@ const mapStateToProps = state => {
       isChatMember: fromState.isChatMember(state, activeChat),
     },
     messages: state.messages,
+    error: state.services.errors.chat,
+    isConnected: state.services.isConnected,
   };
 };
 
@@ -44,6 +49,9 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   sendMessage,
   joinChat,
   leaveChat,
+  mountChat,
+  unmountChat,
+  socketsConnect,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatPage);

@@ -4,6 +4,7 @@ import SideBar from '../layout/sidebar/SideBar';
 import Header from '../layout/header/Header';
 import Chat from './Chat';
 import PaperTip from '../common/PaperTip';
+import ErrorTip from '../common/ErrorTip';
 
 const styles = () => ({
   container: {
@@ -25,17 +26,22 @@ class ChatPage extends React.Component {
     const {
       match,
       fetchAllChats,
+      fetchMyChats,
       setActiveChat,
-      fetchMyChats
+      socketsConnect,
+      mountChat,
     } = this.props;
     Promise.all([
       fetchAllChats(),
       fetchMyChats(),
-    ])
+    ]).then(() => {
+      socketsConnect();
+    })
       .then(() => {
         const { id } = match.params;
         if (id) {
           setActiveChat(id);
+          mountChat(id);
         }
       });
   }
@@ -43,10 +49,14 @@ class ChatPage extends React.Component {
   componentWillReceiveProps(nextProps) {
     const {
       match: { params }, setActiveChat,
+      mountChat,
+      unmountChat,
     } = this.props;
     const { params: nextParams } = nextProps.match;
     if (nextParams.id && params.id !== nextParams.id) {
       setActiveChat(nextParams.id);
+      unmountChat(params.id);
+      mountChat(nextParams.id);
     }
   }
 
@@ -65,7 +75,9 @@ class ChatPage extends React.Component {
       sendMessage,
       joinChat,
       leaveChat,
-      logout
+      logout,
+      error,
+      isConnected,
     } = this.props;
     return (
       <div className={classes.container}>
@@ -74,6 +86,7 @@ class ChatPage extends React.Component {
           activeChat={activeChat}
           myChats={myChats}
           createChat={createChat}
+          isConnected={isConnected}
         />
         <div className={classes.contentWrapper}>
           <Header
@@ -84,6 +97,7 @@ class ChatPage extends React.Component {
             updateUser={updateUser}
             deleteChat={deleteChat}
             leaveChat={leaveChat}
+            isConnected={isConnected}
           />
           {activeChat &&
           <Chat
@@ -92,6 +106,7 @@ class ChatPage extends React.Component {
             currentUser={currentUser}
             sendMessage={sendMessage}
             joinChat={joinChat}
+            isConnected={isConnected}
           />
           }
           {!activeChat &&
@@ -100,6 +115,7 @@ class ChatPage extends React.Component {
           />
           }
         </div>
+        <ErrorTip error={error} />
       </div>
     );
   }

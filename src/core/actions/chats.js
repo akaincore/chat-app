@@ -4,6 +4,11 @@ import { redirect } from './services';
 
 export const fetchMyChats = () => {
   return (dispatch, getState) => {
+    const { isFetching } = getState().services;
+    if (isFetching.myChats) {
+      return Promise.resolve();
+    }
+
     const { token } = getState().auth;
     dispatch({
       type: types.FETCH_MY_CHATS_PENDING,
@@ -22,6 +27,11 @@ export const fetchMyChats = () => {
 
 export const fetchAllChats = () => {
   return (dispatch, getState) => {
+    const { isFetching } = getState().services;
+    if (isFetching.allChats) {
+      return Promise.resolve();
+    }
+
     const { token } = getState().auth;
     dispatch({
       type: types.FETCH_ALL_CHATS_PENDING,
@@ -40,6 +50,11 @@ export const fetchAllChats = () => {
 
 export const fetchChat = (id) => {
   return (dispatch, getState) => {
+    const { isFetching } = getState().services;
+    if (isFetching.chat) {
+      return Promise.resolve();
+    }
+
     const { token } = getState().auth;
     dispatch({
       type: types.FETCH_CHAT_PENDING,
@@ -76,6 +91,7 @@ export const setActiveChat = (id) => {
           type: types.SET_ACTIVE_CHAT,
           payload: data,
         });
+        dispatch(redirect(`/chat/${data.chat._id}`));
       });
   };
 };
@@ -83,6 +99,11 @@ export const setActiveChat = (id) => {
 
 export const createChat = (title) => {
   return (dispatch, getState) => {
+    const { isFetching } = getState().services;
+    if (isFetching.createChat) {
+      return Promise.resolve();
+    }
+
     const { token } = getState().auth;
     dispatch({
       type: types.CREATE_CHAT_PENDING,
@@ -111,6 +132,11 @@ export const createChat = (title) => {
 
 export const deleteChat = (id) => {
   return (dispatch, getState) => {
+    const { isFetching } = getState().services;
+    if (isFetching.deleteChat) {
+      return Promise.resolve();
+    }
+
     const { token } = getState().auth;
     dispatch({
       type: types.DELETE_CHAT_PENDING,
@@ -141,6 +167,11 @@ export const deleteChat = (id) => {
 
 export const joinChat = (id) => {
   return (dispatch, getState) => {
+    const { isFetching } = getState().services;
+    if (isFetching.joinChat) {
+      return Promise.resolve();
+    }
+
     const { token } = getState().auth;
     dispatch({
       type: types.JOIN_CHAT_PENDING,
@@ -166,6 +197,11 @@ export const joinChat = (id) => {
 
 export const leaveChat = (id) => {
   return (dispatch, getState) => {
+    const { isFetching } = getState().services;
+    if (isFetching.leaveChat) {
+      return Promise.resolve();
+    }
+
     const { token } = getState().auth;
     dispatch({
       type: types.LEAVE_CHAT_PENDING,
@@ -188,33 +224,6 @@ export const leaveChat = (id) => {
       })
       .catch(reason => dispatch({
         type: types.LEAVE_CHAT_FAILURE,
-        payload: reason,
-      }));
-  };
-};
-
-export const sendMessage = (chatId, content) => {
-  return (dispatch, getState) => {
-    const { token } = getState().auth;
-    dispatch({
-      type: types.SEND_MESSAGE_PENDING,
-      payload: { chatId, content },
-    });
-    return api(
-      `/chats/${chatId}`,
-      token,
-      { method: 'POST' },
-      { data: { content } }
-    )
-      .then(data => {
-        dispatch({
-          type: types.SEND_MESSAGE_SUCCESS,
-          payload: data
-        });
-        dispatch(fetchChat(chatId));
-      })
-      .catch(reason => dispatch({
-        type: types.SEND_MESSAGE_FAILURE,
         payload: reason,
       }));
   };

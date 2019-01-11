@@ -29,13 +29,14 @@ class ChatMenu extends React.Component {
 
   render() {
     const { anchorEl } = this.state;
-    const { currentUser } = this.props;
+    const { currentUser, disabled } = this.props;
 
     return (
       <div>
         <Button
           aria-owns={anchorEl ? 'simple-menu' : undefined}
           aria-haspopup="true"
+          disabled={disabled}
           onClick={this.handleClick}
         >
           <MoreVert />

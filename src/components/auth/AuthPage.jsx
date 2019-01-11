@@ -8,6 +8,7 @@ import Header from '../layout/header/Header';
 import AuthForm from './AuthForm';
 import getFieldsInitialState from '../utils/fields';
 import { Redirect } from 'react-router-dom';
+import ErrorTip from '../common/ErrorTip';
 
 const styles = () => ({
   formContainer: {
@@ -84,7 +85,7 @@ class AuthPage extends React.Component {
   };
 
   render() {
-    const { classes, isAuthenticated } = this.props;
+    const { classes, isAuthenticated, error } = this.props;
     if (isAuthenticated) {
       return (
         <Redirect to={'/chat'} />
@@ -123,6 +124,7 @@ class AuthPage extends React.Component {
             }
           </Paper>
         </Grid>
+        <ErrorTip error={error} />
       </Grid>
     );
   }
