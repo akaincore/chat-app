@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ChatListItem from './ChatListItem';
+import Chat from '../../../types/Chat';
 
 const styles = theme => ({
   root: {
@@ -32,5 +34,16 @@ const ChatList = ({
     </List>
   </div>
 );
+
+ChatList.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  chats: PropTypes.arrayOf(PropTypes.shape(Chat)).isRequired,
+  activeChat: PropTypes.shape(Chat),
+  disabled: PropTypes.bool.isRequired,
+};
+
+ChatList.defaultProps = {
+  activeChat: null,
+};
 
 export default withStyles(styles)(ChatList);

@@ -1,10 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import classNames from 'classnames';
 import moment from 'moment';
 import ChatAvatar from '../common/ChatAvatar';
+import User from '../../types/User';
+import CurrentUser from '../../types/CurrentUser';
 
 const styles = theme => ({
   root: {
@@ -87,6 +90,15 @@ const Message = ({
       </Paper>
     </div>
   );
+};
+
+Message.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  sender: PropTypes.shape(User).isRequired,
+  content: PropTypes.string.isRequired,
+  currentUser: PropTypes.shape(CurrentUser).isRequired,
+  statusMessage: PropTypes.bool.isRequired,
+  createdAt: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(Message);

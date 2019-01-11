@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import AddChatModal from '../../chat/AddChatModal';
 
@@ -24,16 +25,15 @@ const AddChat = ({
   disabled,
 }) => (
   <div>
-    <Button
+    <Fab
       disabled={disabled}
-      variant="fab"
       color="primary"
       aria-label="Add"
       className={classes.button}
       onClick={handleModalOpen}
     >
       <AddIcon />
-    </Button>
+    </Fab>
     <AddChatModal
       modalOpen={modalOpen}
       handleModalClose={handleModalClose}
@@ -43,5 +43,16 @@ const AddChat = ({
     />
   </div>
 );
+
+AddChat.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  modalOpen: PropTypes.bool.isRequired,
+  handleModalOpen: PropTypes.func.isRequired,
+  handleModalClose: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  onTitleChange: PropTypes.func.isRequired,
+  handleCreateChat: PropTypes.func.isRequired,
+  disabled: PropTypes.bool.isRequired,
+};
 
 export default withStyles(styles)(AddChat);

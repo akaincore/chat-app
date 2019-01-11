@@ -1,14 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import { withStyles } from '@material-ui/core/styles';
 import UserFormModal from './UserFormModal';
-
-const styles = () => ({});
+import User from '../../../types/User';
 
 class ProfileMenu extends React.Component {
+  static propTypes = {
+    ...User,
+    updateUser: PropTypes.func.isRequired,
+    logout: PropTypes.func.isRequired,
+    disabled: PropTypes.bool.isRequired,
+  };
+
   state = {
     anchorEl: null,
     modalOpen: false,
@@ -107,4 +113,4 @@ class ProfileMenu extends React.Component {
   }
 }
 
-export default withStyles(styles)(ProfileMenu);
+export default ProfileMenu;

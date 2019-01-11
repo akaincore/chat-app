@@ -1,10 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVert from '@material-ui/icons/MoreVert';
+import CurrentUser from '../../../types/CurrentUser';
 
 class ChatMenu extends React.Component {
+  static propTypes = {
+    leaveChat: PropTypes.func.isRequired,
+    deleteChat: PropTypes.func.isRequired,
+    currentUser: PropTypes.shape(CurrentUser).isRequired,
+    disabled: PropTypes.bool.isRequired,
+  };
+
   state = {
     anchorEl: null,
   };

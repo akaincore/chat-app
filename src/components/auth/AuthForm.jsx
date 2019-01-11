@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
@@ -53,5 +54,21 @@ const AuthForm = ({
     </Button>
   </form>
 );
+
+AuthForm.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  fields: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired,
+      placeholder: PropTypes.string.isRequired,
+      required: PropTypes.bool.isRequired,
+    }),
+  ).isRequired,
+  values: PropTypes.objectOf(PropTypes.string).isRequired,
+  submitText: PropTypes.string.isRequired,
+  inputChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+};
 
 export default withStyles(styles)(AuthForm);

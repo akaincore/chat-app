@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
@@ -9,6 +10,7 @@ import RestoreIcon from '@material-ui/icons/Restore';
 import AddChat from './AddChat';
 import ChatList from './ChatList';
 import SearchInput from './SearchInput';
+import Chat from '../../../types/Chat';
 
 const styles = () => ({
   drawer: {
@@ -26,6 +28,19 @@ const styles = () => ({
 });
 
 class SideBar extends React.Component {
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    chats: PropTypes.arrayOf(PropTypes.shape(Chat)).isRequired,
+    activeChat: PropTypes.shape(Chat),
+    myChats: PropTypes.arrayOf(PropTypes.shape(Chat)).isRequired,
+    isConnected: PropTypes.bool.isRequired,
+    createChat: PropTypes.func.isRequired,
+  };
+
+  static defaultProps = {
+    activeChat: null,
+  };
+
   state = {
     value: 0,
     modalOpen: false,

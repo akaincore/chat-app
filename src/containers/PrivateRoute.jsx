@@ -1,10 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Redirect, Route, withRouter } from 'react-router-dom';
 import { receiveAuth } from '../core/actions';
 
 class PrivateRoute extends React.Component {
+  static propTypes = {
+    component: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool.isRequired,
+    receiveAuth: PropTypes.func.isRequired,
+  };
+
   componentDidMount() {
     this.props.receiveAuth();
   }

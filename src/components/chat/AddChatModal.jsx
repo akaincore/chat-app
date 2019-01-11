@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -33,5 +34,17 @@ const AddChatModal = ({
     </DialogActions>
   </Dialog>
 );
+
+AddChatModal.propTypes = {
+  modalOpen: PropTypes.bool.isRequired,
+  handleModalClose: PropTypes.func.isRequired,
+  title: PropTypes.string,
+  onTitleChange: PropTypes.func.isRequired,
+  handleCreateChat: PropTypes.func.isRequired,
+};
+
+AddChatModal.defaultProps = {
+  title: '',
+};
 
 export default AddChatModal;

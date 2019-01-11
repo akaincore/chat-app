@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -15,5 +16,10 @@ const styles = () => ({
 const PaperTip = ({ classes, message }) => (
   <Paper className={classes.paperMessage}>{message}</Paper>
 );
+
+PaperTip.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  message: PropTypes.string.isRequired,
+};
 
 export default withStyles(styles)(PaperTip);

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -57,6 +58,14 @@ const UserFormModal = ({
       </DialogActions>
     </Dialog>
   );
+};
+
+UserFormModal.propTypes = {
+  modalOpen: PropTypes.bool.isRequired,
+  handleModalClose: PropTypes.func.isRequired,
+  userForm: PropTypes.objectOf(PropTypes.string).isRequired,
+  onUserFieldChange: PropTypes.func.isRequired,
+  handleUpdateUser: PropTypes.func.isRequired,
 };
 
 export default UserFormModal;

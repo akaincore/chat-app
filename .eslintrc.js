@@ -1,12 +1,12 @@
 module.exports = {
-  'extends': 'airbnb',
-  'parser': 'babel-eslint',
-  'env': {
-    'browser': true
+  extends: 'airbnb',
+  parser: 'babel-eslint',
+  env: {
+    browser: true,
   },
-  'rules': {
+  rules: {
     // conscious choice
-    'indent': 0, // breaks ide code reformat
+    indent: 0, // breaks ide code reformat
     'react/jsx-indent': 0, // breaks ide code reformat
     'no-underscore-dangle': 0, // breaks chat._id props and another vars
     'no-console': 0, // breaks some predefined files, debugging issues
@@ -16,6 +16,6 @@ module.exports = {
     'react/destructuring-assignment': 0, // uncomfortable to use with single prop
     'arrow-parens': 0, // uncomfortable
     // not implemented yet
-    'react/prop-types': 0,
-  }
+    'react/prop-types': 1,
+  },
 };

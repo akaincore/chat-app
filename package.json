@@ -8,6 +8,7 @@
     "classnames": "^2.2.6",
     "isomorphic-fetch": "^2.2.1",
     "moment": "^2.23.0",
+    "prop-types": "^15.6.2",
     "react": "^16.6.3",
     "react-app-rewire-eslint": "^0.2.3",
     "react-app-rewire-polyfills": "^0.2.0",

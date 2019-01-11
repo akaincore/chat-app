@@ -1,11 +1,14 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Grid from '@material-ui/core/Grid';
-import Header from '../layout/header/Header';
+import AppBar from '@material-ui/core/AppBar/index';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 import AuthForm from './AuthForm';
 import getFieldsInitialState from '../utils/fields';
 import ErrorTip from '../common/ErrorTip';
@@ -13,6 +16,18 @@ import ErrorTip from '../common/ErrorTip';
 const styles = () => ({
   formContainer: {
     margin: '50px auto',
+  },
+  appBar: {
+    width: '100%',
+  },
+  toolBar: {
+    padding: '0 50px',
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  titleWrapper: {
+    display: 'flex',
+    alignItems: 'center',
   },
 });
 
@@ -54,6 +69,18 @@ const fields = {
 };
 
 class AuthPage extends React.Component {
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    isAuthenticated: PropTypes.bool.isRequired,
+    error: PropTypes.instanceOf(Error),
+    login: PropTypes.func.isRequired,
+    signup: PropTypes.func.isRequired,
+  };
+
+  static defaultProps = {
+    error: null,
+  };
+
   state = {
     currentTab: 'login',
     login: getFieldsInitialState(fields.login),
@@ -93,7 +120,15 @@ class AuthPage extends React.Component {
     const { currentTab, login, signup } = this.state;
     return (
       <Grid container justify="center">
-        <Header />
+        <AppBar position="static" className={classes.appBar}>
+          <Toolbar className={classes.toolBar}>
+            <div className={classes.titleWrapper}>
+              <Typography variant="h6" color="inherit">
+                {'Chat App'}
+              </Typography>
+            </div>
+          </Toolbar>
+        </AppBar>
         <Grid item className={classes.formContainer}>
           <Paper square>
             <Tabs
