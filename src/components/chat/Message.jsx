@@ -45,12 +45,9 @@ const Message = ({ classes, sender, content, currentUser, statusMessage }) => {
   if (statusMessage) {
     return (
       <div className={classNames(classes.messageContainer)}>
-        <Typography className={classes.statusMessage}>
-          <Typography variant="subtitle2" component="h3">
-            {sender.username}
-          </Typography>
-          <Typography component="p" className={!content ? classes.emptyMessage : ''}>
-            {content || 'Message is empty'}
+        <Typography component="div" className={classes.statusMessage}>
+          <Typography component="p">
+            {sender.username} {content}
           </Typography>
         </Typography>
       </div>

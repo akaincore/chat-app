@@ -123,13 +123,19 @@ export const updateUser = (payload) => {
       { method: 'POST' },
       { data: payload }
     )
-      .then(json => dispatch({
-        type: types.UPDATE_USER_SUCCESS,
-        payload: json,
-      }))
-      .catch(reason => dispatch({
-        type: types.UPDATE_USER_FAILURE,
-        payload: reason
-      }));
+      .then(json => {
+        dispatch({
+          type: types.UPDATE_USER_SUCCESS,
+          payload: json,
+        });
+        return json;
+      })
+      .catch(reason => {
+        dispatch({
+          type: types.UPDATE_USER_FAILURE,
+          payload: reason
+        });
+        return reason;
+      });
   };
 };

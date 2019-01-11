@@ -20,7 +20,7 @@ const styles = theme => ({
 class Chat extends React.Component {
 
   scrollToBottom = () => {
-    this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+    this.messagesEnd.scrollIntoView({ behavior: 'smooth' });
   };
 
   componentDidMount() {
@@ -31,7 +31,7 @@ class Chat extends React.Component {
     this.scrollToBottom();
   }
 
-  render () {
+  render() {
     const {
       classes,
       messages,
@@ -48,21 +48,24 @@ class Chat extends React.Component {
             message={'There is no messages yet'}
           />
           }
-          {messages.length && messages.map((message) => (
+          {messages.map((message) => (
             <Message
               key={message._id}
               sender={message.sender}
               content={message.content}
               currentUser={currentUser}
+              statusMessage={message.statusMessage}
             />
           ))}
           <div
-            ref={(el) => { this.messagesEnd = el; }}
+            ref={(el) => {
+              this.messagesEnd = el;
+            }}
           />
         </List>
         <MessageInput
           sendMessage={(content) => sendMessage(activeChat._id, content)}
-          joinChat={joinChat}
+          joinChat={() => joinChat(activeChat._id)}
           currentUser={currentUser}
         />
       </main>

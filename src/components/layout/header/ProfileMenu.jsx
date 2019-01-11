@@ -32,7 +32,6 @@ class ProfileMenu extends React.Component {
   onUserFieldChange = (event) => {
     event.persist();
     const { name, value } = event.target;
-    console.log(name, value);
     this.setState((prevState) => ({
       userForm: {
         ...prevState.userForm,
@@ -43,8 +42,12 @@ class ProfileMenu extends React.Component {
 
   handleUpdateUser = () => {
     const { updateUser } = this.props;
-    updateUser(this.state.userForm);
-    this.handleModalClose();
+    updateUser(this.state.userForm)
+      .then((result) => {
+        if (!(result instanceof Error)) {
+          this.handleModalClose();
+        }
+      });
   };
 
   handleClick = event => {
