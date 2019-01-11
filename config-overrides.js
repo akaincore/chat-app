@@ -1,8 +1,8 @@
-// const rewireEslint = require('react-app-rewire-eslint');
-// const rewirePolyfills = require('react-app-rewire-polyfills');
+const { compose } = require('react-app-rewired');
+const rewireEslint = require('react-app-rewire-eslint');
+const rewirePolyfills = require('react-app-rewire-polyfills');
 
-module.exports = function override(config, env) {
-  // config = rewireEslint(config, env);
-  config = rewirePolyfills(config, env);
-  return config;
-};
+module.exports = compose(
+  rewirePolyfills,
+  rewireEslint,
+);

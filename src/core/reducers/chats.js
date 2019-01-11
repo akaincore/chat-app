@@ -1,3 +1,4 @@
+/* eslint no-use-before-define: 0 */
 import { combineReducers } from 'redux';
 import * as types from '../actions/types';
 
@@ -5,7 +6,7 @@ const initialState = {
   activeId: null,
   allIds: [],
   myIds: [],
-  byIds: {}
+  byIds: {},
 };
 
 const activeId = (state = initialState.activeId, action) => {
@@ -36,7 +37,7 @@ const allIds = (state = initialState.allIds, action) => {
     case types.CREATE_CHAT_SUCCESS: {
       return [
         ...state,
-        action.payload.chat._id
+        action.payload.chat._id,
       ];
     }
     case types.RECEIVE_DELETED_CHAT:
@@ -58,7 +59,7 @@ const myIds = (state = initialState.myIds, action) => {
     case types.CREATE_CHAT_SUCCESS: {
       return [
         ...state,
-        action.payload.chat._id
+        action.payload.chat._id,
       ];
     }
     case types.DELETE_CHAT_SUCCESS:

@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
 
 export default rootReducer;
 
-export const getCurrentUser = (state) => state.auth.user;
+export const getCurrentUser = state => state.auth.user;
 
 export const isCreator = (state, chat) => {
   try {
@@ -27,13 +27,11 @@ export const isCreator = (state, chat) => {
 export const isMember = (state, chat) => {
   try {
     return chat.members.some(
-      member => member._id === getCurrentUser(state)._id
+      member => member._id === getCurrentUser(state)._id,
     );
   } catch (e) {
     return false;
   }
 };
 
-export const isChatMember = (state, chat) => {
-  return isCreator(state, chat) || isMember(state, chat);
-};
+export const isChatMember = (state, chat) => isCreator(state, chat) || isMember(state, chat);

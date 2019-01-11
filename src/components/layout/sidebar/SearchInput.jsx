@@ -14,21 +14,19 @@ const styles = theme => ({
   },
 });
 
-const SearchInput = ({ classes, value, onSearch }) => {
-  return (
-    <div className={classes.container}>
-      <Input
-        fullWidth={true}
-        placeholder="Search chats..."
-        className={classes.input}
-        value={value}
-        onChange={onSearch}
-        inputProps={{
-          'aria-label': 'Description',
-        }}
-      />
-    </div>
-  );
-};
+const SearchInput = ({ classes, value, onSearch }) => (
+  <div className={classes.container}>
+    <Input
+      fullWidth
+      placeholder="Search chats..."
+      className={classes.input}
+      value={value}
+      onChange={onSearch}
+      inputProps={{
+        'aria-label': 'Description',
+      }}
+    />
+  </div>
+);
 
 export default withStyles(styles)(SearchInput);

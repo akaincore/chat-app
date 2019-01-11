@@ -24,16 +24,28 @@ const styles = theme => ({
   },
   hidden: {
     display: 'none',
-  }
+  },
 });
 
 
-const AuthForm = ({ fields, values, submitText, classes, inputChange, onSubmit }) => (
+const AuthForm = ({
+                    fields,
+                    values,
+                    submitText,
+                    classes,
+                    inputChange,
+                    onSubmit,
+                  }) => (
   <form className={classes.authForm} onSubmit={onSubmit}>
-    {fields.map(({ type, name, placeholder, required }, index) => (
+    {fields.map(({
+                   type,
+                   name,
+                   placeholder,
+                   required,
+                 }) => (
       <TextField
         fullWidth
-        key={index}
+        key={`${type}-${name}`}
         label={placeholder}
         placeholder={placeholder}
         name={name}
@@ -49,7 +61,7 @@ const AuthForm = ({ fields, values, submitText, classes, inputChange, onSubmit }
       variant="contained"
       color="primary"
       className={classes.submitButton}
-      type={'submit'}
+      type="submit"
     >
       {submitText}
     </Button>

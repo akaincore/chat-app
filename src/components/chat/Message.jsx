@@ -3,8 +3,9 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import classNames from 'classnames';
-import ChatAvatar from '../common/ChatAvatar';
 import moment from 'moment';
+import ChatAvatar from '../common/ChatAvatar';
+
 
 const styles = theme => ({
   root: {
@@ -48,14 +49,22 @@ const styles = theme => ({
   },
 });
 
-const Message = ({ classes, sender, content, currentUser, statusMessage, createdAt }) => {
+const Message = ({
+                   classes,
+                   sender,
+                   content,
+                   currentUser,
+                   statusMessage,
+                   createdAt,
+                 }) => {
 
   if (statusMessage) {
     return (
       <div className={classNames(classes.messageContainer)}>
         <Typography component="div" className={classes.statusMessage}>
           <Typography component="p">
-            {sender.username} {content}
+            {sender.username}
+            {content}
           </Typography>
           <Typography component="p" className={classes.statusMessageTime}>
             {moment(createdAt).fromNow()}

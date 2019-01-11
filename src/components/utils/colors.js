@@ -17,7 +17,7 @@ const getColor = (string) => {
     const code = string.toString()
       .split('')
       .map(char => char.charCodeAt())
-      .reduce((sum, code) => sum + code, 0);
+      .reduce((sum, charCode) => sum + charCode, 0);
     const index = code % colors.length;
     return colors[index][500];
   } catch (e) {

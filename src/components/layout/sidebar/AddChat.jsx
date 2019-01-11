@@ -22,9 +22,8 @@ const AddChat = ({
                    onTitleChange,
                    handleCreateChat,
                    disabled,
-                 }) => {
-  return (
-    <div>
+                 }) => (
+  <div>
     <Button
       disabled={disabled}
       variant="fab"
@@ -35,15 +34,14 @@ const AddChat = ({
     >
       <AddIcon />
     </Button>
-      <AddChatModal
-        modalOpen={modalOpen}
-        handleModalClose={handleModalClose}
-        title={title}
-        onTitleChange={onTitleChange}
-        handleCreateChat={handleCreateChat}
-      />
-    </div>
-  );
-};
+    <AddChatModal
+      modalOpen={modalOpen}
+      handleModalClose={handleModalClose}
+      title={title}
+      onTitleChange={onTitleChange}
+      handleCreateChat={handleCreateChat}
+    />
+  </div>
+);
 
 export default withStyles(styles)(AddChat);

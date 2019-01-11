@@ -1,4 +1,4 @@
-const initials = title => {
+const initials = (title) => {
   try {
     return title
       .split(' ')

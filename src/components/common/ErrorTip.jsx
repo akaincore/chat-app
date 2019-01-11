@@ -9,18 +9,18 @@ class ErrorTip extends React.Component {
     open: false,
   };
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.error) {
+      this.setState({ open: true });
+    }
+  }
+
   handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
     }
     this.setState({ open: false });
   };
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.error) {
-      this.setState({ open: true })
-    }
-  }
 
   render() {
     const { error } = this.props;

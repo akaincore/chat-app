@@ -16,8 +16,9 @@ const render = () => {
   ReactDOM.render(
     <Provider store={store}>
       <App />
-    </Provider>
-    , root);
+    </Provider>,
+    root,
+  );
 };
 
 render();

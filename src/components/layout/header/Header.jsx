@@ -42,21 +42,25 @@ const Header = (props) => {
             {activeChat ? activeChat.title : 'Chat App'}
           </Typography>
           {activeChat &&
-          <ChatMenu
-            disabled={!isConnected}
-            currentUser={currentUser}
-            deleteChat={() => deleteChat(activeChat._id)}
-            leaveChat={() => leaveChat(activeChat._id)}
-          />
+          (
+            <ChatMenu
+              disabled={!isConnected}
+              currentUser={currentUser}
+              deleteChat={() => deleteChat(activeChat._id)}
+              leaveChat={() => leaveChat(activeChat._id)}
+            />
+          )
           }
         </div>
         {isAuthenticated &&
-        <ProfileMenu
-          disabled={!isConnected}
-          currentUser={currentUser}
-          updateUser={updateUser}
-          logout={logout}
-        />
+        (
+          <ProfileMenu
+            disabled={!isConnected}
+            currentUser={currentUser}
+            updateUser={updateUser}
+            logout={logout}
+          />
+        )
         }
       </Toolbar>
     </AppBar>

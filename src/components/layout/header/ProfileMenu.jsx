@@ -9,7 +9,6 @@ import UserFormModal from './UserFormModal';
 const styles = () => ({});
 
 class ProfileMenu extends React.Component {
-
   state = {
     anchorEl: null,
     modalOpen: false,
@@ -19,6 +18,18 @@ class ProfileMenu extends React.Component {
       lastName: '',
     },
   };
+
+  componentWillReceiveProps(nextProps) {
+    const { username, firstName, lastName } = nextProps.currentUser || {};
+    this.setState((prevState) => ({
+      ...prevState,
+      userForm: {
+        username,
+        firstName,
+        lastName,
+      },
+    }));
+  }
 
   handleModalOpen = () => {
     this.setState({ modalOpen: true });
@@ -50,7 +61,7 @@ class ProfileMenu extends React.Component {
       });
   };
 
-  handleClick = event => {
+  handleClick = (event) => {
     this.setState({ anchorEl: event.currentTarget });
   };
 
@@ -62,18 +73,6 @@ class ProfileMenu extends React.Component {
     this.props.logout();
     this.handleMenuClose();
   };
-
-  componentWillReceiveProps(nextProps) {
-    const { username, firstName, lastName } = nextProps.currentUser || {};
-    this.setState({
-      ...this.state,
-      userForm: {
-        username,
-        firstName,
-        lastName,
-      },
-    });
-  }
 
   render() {
     const { anchorEl, modalOpen, userForm } = this.state;

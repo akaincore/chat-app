@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
@@ -7,7 +8,6 @@ import Grid from '@material-ui/core/Grid';
 import Header from '../layout/header/Header';
 import AuthForm from './AuthForm';
 import getFieldsInitialState from '../utils/fields';
-import { Redirect } from 'react-router-dom';
 import ErrorTip from '../common/ErrorTip';
 
 const styles = () => ({
@@ -71,7 +71,7 @@ class AuthPage extends React.Component {
     this.setState((prevState) => ({
       [form]: {
         ...prevState[form],
-        [name]: value
+        [name]: value,
       },
     }));
   };
@@ -79,21 +79,21 @@ class AuthPage extends React.Component {
   onSubmit = (form) => (event) => {
     event.preventDefault();
     const { username, password } = this.state[form];
-    form === 'login' ?
-      this.props.login(username, password)
-      : this.props.signup(username, password);
+    if (form === 'login') {
+      this.props.login(username, password);
+    } else {
+      this.props.signup(username, password);
+    }
   };
 
   render() {
     const { classes, isAuthenticated, error } = this.props;
     if (isAuthenticated) {
-      return (
-        <Redirect to={'/chat'} />
-      );
+      return <Redirect to="/chat" />;
     }
     const { currentTab, login, signup } = this.state;
     return (
-      <Grid container justify={'center'}>
+      <Grid container justify="center">
         <Header />
         <Grid item className={classes.formContainer}>
           <Paper square>
@@ -103,24 +103,27 @@ class AuthPage extends React.Component {
               textColor="primary"
               onChange={this.tabChange}
             >
-              <Tab label="Login" value={'login'} />
-              <Tab label="Sign Up" value={'signup'} />
+              <Tab label="Login" value="login" />
+              <Tab label="Sign Up" value="signup" />
             </Tabs>
             {currentTab === 'login' ?
-              <AuthForm
-                fields={fields.login}
-                values={login}
-                submitText={'Login'}
-                inputChange={this.inputChange('login')}
-                onSubmit={this.onSubmit('login')}
-              /> :
-              <AuthForm
-                fields={fields.signup}
-                values={signup}
-                submitText={'Sign Up'}
-                inputChange={this.inputChange('signup')}
-                onSubmit={this.onSubmit('signup')}
-              />
+              (
+                <AuthForm
+                  fields={fields.login}
+                  values={login}
+                  submitText="Login"
+                  inputChange={this.inputChange('login')}
+                  onSubmit={this.onSubmit('login')}
+                />
+              ) : (
+                <AuthForm
+                  fields={fields.signup}
+                  values={signup}
+                  submitText="Sign Up"
+                  inputChange={this.inputChange('signup')}
+                  onSubmit={this.onSubmit('signup')}
+                />
+              )
             }
           </Paper>
         </Grid>

@@ -4,16 +4,15 @@ import loggerMiddleware from 'redux-logger';
 import rootReducer from '../reducers';
 
 const configureStore = () => {
-
   if (process.env.NODE_ENV === 'production') {
     return createStore(
       rootReducer,
-      applyMiddleware(thunkMiddleware)
+      applyMiddleware(thunkMiddleware),
     );
   }
 
-  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
       serialize: true,
     })
     : compose;
@@ -22,16 +21,17 @@ const configureStore = () => {
     rootReducer,
     composeEnhancers(
       applyMiddleware(
-        thunkMiddleware, loggerMiddleware
-      )
-    )
+        thunkMiddleware,
+        loggerMiddleware,
+      ),
+    ),
   );
 
   if (process.env.NODE_ENV !== 'production') {
     if (module.hot) {
       module.hot.accept('../reducers', () => {
-        store.replaceReducer(rootReducer)
-      })
+        store.replaceReducer(rootReducer);
+      });
     }
   }
 

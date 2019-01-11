@@ -63,16 +63,13 @@ class SideBar extends React.Component {
     this.setState({ value });
   };
 
-  filterChats = (chats) => {
-    return chats
-      .filter(chat => chat.title
+  filterChats = (chats) => chats
+    .filter(
+      chat => chat.title
         .toLowerCase()
-        .includes(this.state.search.toLowerCase())
-      )
-      .sort((one, two) =>
-        one.title.toLowerCase() <= two.title.toLowerCase() ? -1 : 1
-      );
-  };
+        .includes(this.state.search.toLowerCase()),
+    )
+    .sort((one, two) => (one.title.toLowerCase() <= two.title.toLowerCase() ? -1 : 1));
 
   render() {
     const {
@@ -82,13 +79,18 @@ class SideBar extends React.Component {
       myChats,
       isConnected,
     } = this.props;
-    const { value, modalOpen, newChatTitle, search } = this.state;
+    const {
+      value,
+      modalOpen,
+      newChatTitle,
+      search,
+    } = this.state;
     const tabChats = value === 0 ? myChats : chats;
     return (
       <Drawer
         className={classes.drawer}
         variant="permanent"
-        open={true}
+        open
         classes={{
           paper: classes.drawerPaper,
         }}

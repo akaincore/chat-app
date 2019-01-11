@@ -1,8 +1,8 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { receiveAuth } from '../core/actions';
 import { Redirect, Route, withRouter } from 'react-router-dom';
+import { receiveAuth } from '../core/actions';
 
 
 class PrivateRoute extends React.Component {
@@ -25,7 +25,7 @@ class PrivateRoute extends React.Component {
                   pathname: '/auth',
                   state: {
                     from: props.location,
-                  }
+                  },
                 }}
               />
             )
@@ -36,11 +36,11 @@ class PrivateRoute extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  receiveAuth
+  receiveAuth,
 }, dispatch);
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PrivateRoute));

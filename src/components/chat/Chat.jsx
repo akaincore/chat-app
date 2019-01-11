@@ -19,10 +19,6 @@ const styles = theme => ({
 
 class Chat extends React.Component {
 
-  scrollToBottom = () => {
-    this.messagesEnd.scrollIntoView({ behavior: 'smooth' });
-  };
-
   componentDidMount() {
     this.scrollToBottom();
   }
@@ -30,6 +26,10 @@ class Chat extends React.Component {
   componentDidUpdate() {
     this.scrollToBottom();
   }
+
+  scrollToBottom = () => {
+    this.messagesEnd.scrollIntoView({ behavior: 'smooth' });
+  };
 
   render() {
     const {
@@ -45,9 +45,7 @@ class Chat extends React.Component {
       <main className={classes.root}>
         <List className={classes.list}>
           {!messages.length &&
-          <PaperTip
-            message={'There is no messages yet'}
-          />
+          <PaperTip message="There is no messages yet" />
           }
           {messages.map((message) => (
             <Message

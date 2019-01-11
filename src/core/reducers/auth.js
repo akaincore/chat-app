@@ -5,7 +5,7 @@ const token = localStorage.getItem('token');
 const initialState = {
   isAuthenticated: !!token,
   user: null,
-  token: token,
+  token,
 };
 
 const auth = (state = initialState, action) => {
@@ -24,7 +24,7 @@ const auth = (state = initialState, action) => {
         ...state,
         isAuthenticated: true,
         user: action.payload.user,
-      }
+      };
     }
     case types.LOGOUT_SUCCESS:
     case types.SIGNUP_FAILURE:
@@ -43,8 +43,8 @@ const auth = (state = initialState, action) => {
         user: {
           ...state.user,
           ...action.payload.user,
-        }
-      }
+        },
+      };
     }
     default: {
       return state;

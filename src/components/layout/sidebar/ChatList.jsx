@@ -15,33 +15,25 @@ const styles = theme => ({
   },
 });
 
-class ChatList extends React.Component {
-
-  render() {
-    const {
-      classes,
-      chats,
-      activeChat,
-      disabled,
-    } = this.props;
-    return (
-      <div className={classes.root}>
-        <List className={classes.chatList}>
-          {chats.map((chat) => {
-            return (
-              <ChatListItem
-                disabled={disabled}
-                key={chat._id}
-                chatId={chat._id}
-                selected={activeChat && activeChat._id === chat._id}
-                {...chat}
-              />
-            );
-          })}
-        </List>
-      </div>
-    );
-  }
-}
+const ChatList = ({
+                    classes,
+                    chats,
+                    activeChat,
+                    disabled,
+                  }) => (
+  <div className={classes.root}>
+    <List className={classes.chatList}>
+      {chats.map((chat) => (
+        <ChatListItem
+          disabled={disabled}
+          key={chat._id}
+          chatId={chat._id}
+          selected={activeChat && activeChat._id === chat._id}
+          {...chat}
+        />
+      ))}
+    </List>
+  </div>
+);
 
 export default withStyles(styles)(ChatList);

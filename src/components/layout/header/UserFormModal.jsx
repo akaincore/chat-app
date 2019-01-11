@@ -7,12 +7,12 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 
 const UserFormModal = ({
-                    modalOpen,
-                    handleModalClose,
-                    userForm,
-                    onUserFieldChange,
-                    handleUpdateUser
-                  }) => {
+                         modalOpen,
+                         handleModalClose,
+                         userForm,
+                         onUserFieldChange,
+                         handleUpdateUser,
+                       }) => {
   const { username, firstName, lastName } = userForm;
   return (
     <Dialog

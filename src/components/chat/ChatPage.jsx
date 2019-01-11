@@ -17,7 +17,7 @@ const styles = () => ({
     width: '100%',
     height: '100vh',
     overflowY: 'hidden',
-  }
+  },
 });
 
 class ChatPage extends React.Component {
@@ -100,19 +100,19 @@ class ChatPage extends React.Component {
             isConnected={isConnected}
           />
           {activeChat &&
-          <Chat
-            messages={messages}
-            activeChat={activeChat}
-            currentUser={currentUser}
-            sendMessage={sendMessage}
-            joinChat={joinChat}
-            isConnected={isConnected}
-          />
+          (
+            <Chat
+              messages={messages}
+              activeChat={activeChat}
+              currentUser={currentUser}
+              sendMessage={sendMessage}
+              joinChat={joinChat}
+              isConnected={isConnected}
+            />
+          )
           }
           {!activeChat &&
-          <PaperTip
-            message={'Select chat to start messaging'}
-          />
+          <PaperTip message="Select chat to start messaging" />
           }
         </div>
         <ErrorTip error={error} />

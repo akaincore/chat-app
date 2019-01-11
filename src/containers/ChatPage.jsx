@@ -19,7 +19,7 @@ import {
 import * as fromChats from '../core/reducers/chats';
 import * as fromState from '../core/reducers';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const activeChat = fromChats.getChatById(state.chats, state.chats.activeId);
   return {
     isAuthenticated: state.auth.isAuthenticated,

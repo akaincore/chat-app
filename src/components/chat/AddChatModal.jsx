@@ -11,37 +11,35 @@ const AddChatModal = ({
                         handleModalClose,
                         title,
                         onTitleChange,
-                        handleCreateChat
-                      }) => {
-  return (
-    <Dialog
-      open={modalOpen}
-      onClose={handleModalClose}
-      aria-labelledby="form-dialog-title"
-    >
-      <DialogTitle id="form-dialog-title">Edit profile</DialogTitle>
-      <DialogContent>
-        <TextField
-          margin="dense"
-          name="title"
-          label="Chat title"
-          type="text"
-          required
-          fullWidth
-          value={title}
-          onChange={onTitleChange}
-        />
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={handleCreateChat} color="primary">
-          Create
-        </Button>
-        <Button onClick={handleModalClose} color="primary">
-          Cancel
-        </Button>
-      </DialogActions>
-    </Dialog>
-  );
-};
+                        handleCreateChat,
+                      }) => (
+  <Dialog
+    open={modalOpen}
+    onClose={handleModalClose}
+    aria-labelledby="form-dialog-title"
+  >
+    <DialogTitle id="form-dialog-title">Create new chat</DialogTitle>
+    <DialogContent>
+      <TextField
+        margin="dense"
+        name="title"
+        label="Chat title"
+        type="text"
+        required
+        fullWidth
+        value={title}
+        onChange={onTitleChange}
+      />
+    </DialogContent>
+    <DialogActions>
+      <Button onClick={handleCreateChat} color="primary">
+        Create
+      </Button>
+      <Button onClick={handleModalClose} color="primary">
+        Cancel
+      </Button>
+    </DialogActions>
+  </Dialog>
+);
 
 export default AddChatModal;

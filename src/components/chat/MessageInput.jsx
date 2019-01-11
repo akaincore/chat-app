@@ -4,7 +4,7 @@ import Input from '@material-ui/core/Input';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 
-const styles = theme => ({
+const styles = () => ({
   container: {
     position: 'fixed',
     display: 'flex',
@@ -19,7 +19,7 @@ const styles = theme => ({
   },
   paper: {
     width: '90%',
-  }
+  },
 });
 
 class MessageInput extends React.Component {
@@ -55,34 +55,38 @@ class MessageInput extends React.Component {
       <div className={classes.container}>
         <Paper className={classes.paper}>
           {currentUser.isChatMember &&
-          <Input
-            disabled={disabled}
-            fullWidth={true}
-            placeholder="Type message..."
-            className={classes.input}
-            inputProps={{
-              'aria-label': 'Description',
-            }}
-            value={message}
-            onChange={this.onMessageChange}
-            onKeyPress={this.onKeyPress}
-          />
+          (
+            <Input
+              disabled={disabled}
+              fullWidth
+              placeholder="Type message..."
+              className={classes.input}
+              inputProps={{
+                'aria-label': 'Description',
+              }}
+              value={message}
+              onChange={this.onMessageChange}
+              onKeyPress={this.onKeyPress}
+            />
+          )
           }
           {!currentUser.isChatMember &&
-          <Button
-            disabled={disabled}
-            onClick={joinChat}
-            fullWidth
-            variant="contained"
-            color="primary"
-          >
-            Join
-          </Button>
+          (
+            <Button
+              disabled={disabled}
+              onClick={joinChat}
+              fullWidth
+              variant="contained"
+              color="primary"
+            >
+              Join
+            </Button>
+          )
           }
         </Paper>
       </div>
     );
-  };
+  }
 
 }
 
