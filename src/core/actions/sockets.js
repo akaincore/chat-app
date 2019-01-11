@@ -1,6 +1,7 @@
 import SocketIOClient from 'socket.io-client';
 import * as types from './types';
 import { redirect } from './services';
+import config from '../../config';
 
 export const missingSocketConnection = () => ({
   type: types.SOCKETS_CONNECTION_MISSING,
@@ -19,7 +20,7 @@ export const socketsConnect = () => (dispatch, getState) => {
     type: types.SOCKETS_CONNECTION_PENDING,
   });
   const { token } = getState().auth;
-  socket = SocketIOClient('ws://10.102.100.176:9999/', {
+  socket = SocketIOClient(config.SOCKETS_URI, {
     query: { token },
   });
   // common socket events
