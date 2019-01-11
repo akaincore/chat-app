@@ -33,9 +33,9 @@ class ChatPage extends React.Component {
       fetchMyChats(),
     ])
       .then(() => {
-        const { chatId } = match.params;
-        if (chatId) {
-          setActiveChat(chatId);
+        const { id } = match.params;
+        if (id) {
+          setActiveChat(id);
         }
       });
   }
@@ -45,8 +45,8 @@ class ChatPage extends React.Component {
       match: { params }, setActiveChat,
     } = this.props;
     const { params: nextParams } = nextProps.match;
-    if (nextParams.chatId && params.chatId !== nextParams.chatId) {
-      setActiveChat(nextParams.chatId);
+    if (nextParams.id && params.id !== nextParams.id) {
+      setActiveChat(nextParams.id);
     }
   }
 
