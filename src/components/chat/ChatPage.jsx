@@ -21,7 +21,6 @@ const styles = () => ({
 });
 
 class ChatPage extends React.Component {
-
   componentDidMount() {
     const {
       match,
@@ -31,12 +30,10 @@ class ChatPage extends React.Component {
       socketsConnect,
       mountChat,
     } = this.props;
-    Promise.all([
-      fetchAllChats(),
-      fetchMyChats(),
-    ]).then(() => {
-      socketsConnect();
-    })
+    Promise.all([fetchAllChats(), fetchMyChats()])
+      .then(() => {
+        socketsConnect();
+      })
       .then(() => {
         const { id } = match.params;
         if (id) {
@@ -48,7 +45,8 @@ class ChatPage extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const {
-      match: { params }, setActiveChat,
+      match: { params },
+      setActiveChat,
       mountChat,
       unmountChat,
     } = this.props;
@@ -99,8 +97,7 @@ class ChatPage extends React.Component {
             leaveChat={leaveChat}
             isConnected={isConnected}
           />
-          {activeChat &&
-          (
+          {activeChat && (
             <Chat
               messages={messages}
               activeChat={activeChat}
@@ -109,11 +106,8 @@ class ChatPage extends React.Component {
               joinChat={joinChat}
               isConnected={isConnected}
             />
-          )
-          }
-          {!activeChat &&
-          <PaperTip message="Select chat to start messaging" />
-          }
+          )}
+          {!activeChat && <PaperTip message="Select chat to start messaging" />}
         </div>
         <ErrorTip error={error} />
       </div>

@@ -13,9 +13,7 @@ const styles = () => ({
 });
 
 const PaperTip = ({ classes, message }) => (
-  <Paper className={classes.paperMessage}>
-    {message}
-  </Paper>
+  <Paper className={classes.paperMessage}>{message}</Paper>
 );
 
 export default withStyles(styles)(PaperTip);

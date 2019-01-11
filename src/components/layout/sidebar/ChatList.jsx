@@ -16,14 +16,11 @@ const styles = theme => ({
 });
 
 const ChatList = ({
-                    classes,
-                    chats,
-                    activeChat,
-                    disabled,
-                  }) => (
+ classes, chats, activeChat, disabled,
+}) => (
   <div className={classes.root}>
     <List className={classes.chatList}>
-      {chats.map((chat) => (
+      {chats.map(chat => (
         <ChatListItem
           disabled={disabled}
           key={chat._id}

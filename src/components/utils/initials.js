@@ -1,4 +1,4 @@
-const initials = (title) => {
+const initials = title => {
   try {
     return title
       .split(' ')
@@ -9,6 +9,5 @@ const initials = (title) => {
     return title.length ? title[0] : 'A';
   }
 };
-
 
 export default initials;

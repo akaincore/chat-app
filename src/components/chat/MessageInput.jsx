@@ -23,18 +23,17 @@ const styles = () => ({
 });
 
 class MessageInput extends React.Component {
-
   state = {
     message: '',
   };
 
-  onMessageChange = (event) => {
+  onMessageChange = event => {
     this.setState({
       message: event.target.value,
     });
   };
 
-  onKeyPress = (event) => {
+  onKeyPress = event => {
     const { message } = this.state;
 
     if (event.key === 'Enter' && message) {
@@ -45,17 +44,13 @@ class MessageInput extends React.Component {
 
   render() {
     const {
-      classes,
-      joinChat,
-      currentUser,
-      disabled,
-    } = this.props;
+ classes, joinChat, currentUser, disabled,
+} = this.props;
     const { message } = this.state;
     return (
       <div className={classes.container}>
         <Paper className={classes.paper}>
-          {currentUser.isChatMember &&
-          (
+          {currentUser.isChatMember && (
             <Input
               disabled={disabled}
               fullWidth
@@ -68,10 +63,8 @@ class MessageInput extends React.Component {
               onChange={this.onMessageChange}
               onKeyPress={this.onKeyPress}
             />
-          )
-          }
-          {!currentUser.isChatMember &&
-          (
+          )}
+          {!currentUser.isChatMember && (
             <Button
               disabled={disabled}
               onClick={joinChat}
@@ -81,13 +74,11 @@ class MessageInput extends React.Component {
             >
               Join
             </Button>
-          )
-          }
+          )}
         </Paper>
       </div>
     );
   }
-
 }
 
 export default withStyles(styles)(MessageInput);

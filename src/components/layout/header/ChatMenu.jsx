@@ -9,7 +9,7 @@ class ChatMenu extends React.Component {
     anchorEl: null,
   };
 
-  handleClick = (event) => {
+  handleClick = event => {
     this.setState({ anchorEl: event.currentTarget });
   };
 
@@ -47,12 +47,8 @@ class ChatMenu extends React.Component {
           open={Boolean(anchorEl)}
           onClose={this.handleClose}
         >
-          {currentUser.isMember &&
-          <MenuItem onClick={this.onChatLeave}>Leave chat</MenuItem>
-          }
-          {currentUser.isCreator &&
-          <MenuItem onClick={this.onChatDelete}>Delete chat</MenuItem>
-          }
+          {currentUser.isMember && <MenuItem onClick={this.onChatLeave}>Leave chat</MenuItem>}
+          {currentUser.isCreator && <MenuItem onClick={this.onChatDelete}>Delete chat</MenuItem>}
         </Menu>
       </div>
     );

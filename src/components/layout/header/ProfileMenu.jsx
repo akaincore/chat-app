@@ -21,7 +21,7 @@ class ProfileMenu extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const { username, firstName, lastName } = nextProps.currentUser || {};
-    this.setState((prevState) => ({
+    this.setState(prevState => ({
       ...prevState,
       userForm: {
         username,
@@ -40,10 +40,10 @@ class ProfileMenu extends React.Component {
     this.setState({ modalOpen: false });
   };
 
-  onUserFieldChange = (event) => {
+  onUserFieldChange = event => {
     event.persist();
     const { name, value } = event.target;
-    this.setState((prevState) => ({
+    this.setState(prevState => ({
       userForm: {
         ...prevState.userForm,
         [name]: value,
@@ -53,15 +53,14 @@ class ProfileMenu extends React.Component {
 
   handleUpdateUser = () => {
     const { updateUser } = this.props;
-    updateUser(this.state.userForm)
-      .then((result) => {
-        if (!(result instanceof Error)) {
-          this.handleModalClose();
-        }
-      });
+    updateUser(this.state.userForm).then(result => {
+      if (!(result instanceof Error)) {
+        this.handleModalClose();
+      }
+    });
   };
 
-  handleClick = (event) => {
+  handleClick = event => {
     this.setState({ anchorEl: event.currentTarget });
   };
 
@@ -106,7 +105,6 @@ class ProfileMenu extends React.Component {
       </div>
     );
   }
-
 }
 
 export default withStyles(styles)(ProfileMenu);

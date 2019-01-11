@@ -14,13 +14,13 @@ export const fetchMyChats = () => (dispatch, getState) => {
   });
   return api('/chats/my', token)
     .then(data => dispatch({
-      type: types.FETCH_MY_CHATS_SUCCESS,
-      payload: data,
-    }))
+        type: types.FETCH_MY_CHATS_SUCCESS,
+        payload: data,
+      }))
     .catch(reason => dispatch({
-      type: types.FETCH_MY_CHATS_FAILURE,
-      payload: reason,
-    }));
+        type: types.FETCH_MY_CHATS_FAILURE,
+        payload: reason,
+      }));
 };
 
 export const fetchAllChats = () => (dispatch, getState) => {
@@ -35,13 +35,13 @@ export const fetchAllChats = () => (dispatch, getState) => {
   });
   return api('/chats', token)
     .then(data => dispatch({
-      type: types.FETCH_ALL_CHATS_SUCCESS,
-      payload: data,
-    }))
+        type: types.FETCH_ALL_CHATS_SUCCESS,
+        payload: data,
+      }))
     .catch(reason => dispatch({
-      type: types.FETCH_ALL_CHATS_FAILURE,
-      payload: reason,
-    }));
+        type: types.FETCH_ALL_CHATS_FAILURE,
+        payload: reason,
+      }));
 };
 
 export const fetchChat = id => (dispatch, getState) => {
@@ -55,14 +55,14 @@ export const fetchChat = id => (dispatch, getState) => {
     type: types.FETCH_CHAT_PENDING,
   });
   return api(`/chats/${id}`, token)
-    .then((data) => {
+    .then(data => {
       dispatch({
         type: types.FETCH_CHAT_SUCCESS,
         payload: data,
       });
       return data;
     })
-    .catch((reason) => {
+    .catch(reason => {
       dispatch({
         type: types.FETCH_CHAT_FAILURE,
         payload: reason,
@@ -71,8 +71,7 @@ export const fetchChat = id => (dispatch, getState) => {
     });
 };
 
-export const setActiveChat = id => dispatch => dispatch(fetchChat(id))
-  .then((data) => {
+export const setActiveChat = id => dispatch => dispatch(fetchChat(id)).then(data => {
     if (!data) {
       dispatch(redirect('/chat'));
       return dispatch({
@@ -87,7 +86,6 @@ export const setActiveChat = id => dispatch => dispatch(fetchChat(id))
     return data;
   });
 
-
 export const createChat = title => (dispatch, getState) => {
   const { isFetching } = getState().services;
   if (isFetching.createChat) {
@@ -99,13 +97,8 @@ export const createChat = title => (dispatch, getState) => {
     type: types.CREATE_CHAT_PENDING,
     payload: { title },
   });
-  return api(
-    '/chats',
-    token,
-    { method: 'POST' },
-    { data: { title } },
-  )
-    .then((data) => {
+  return api('/chats', token, { method: 'POST' }, { data: { title } })
+    .then(data => {
       dispatch({
         type: types.CREATE_CHAT_SUCCESS,
         payload: data,
@@ -114,9 +107,9 @@ export const createChat = title => (dispatch, getState) => {
     })
     .then(data => dispatch(setActiveChat(data.chat._id)))
     .catch(reason => dispatch({
-      type: types.CREATE_CHAT_FAILURE,
-      payload: reason,
-    }));
+        type: types.CREATE_CHAT_FAILURE,
+        payload: reason,
+      }));
 };
 
 export const deleteChat = id => (dispatch, getState) => {
@@ -130,12 +123,8 @@ export const deleteChat = id => (dispatch, getState) => {
     type: types.DELETE_CHAT_PENDING,
     payload: { id },
   });
-  return api(
-    `/chats/${id}`,
-    token,
-    { method: 'DELETE' },
-  )
-    .then((data) => {
+  return api(`/chats/${id}`, token, { method: 'DELETE' })
+    .then(data => {
       dispatch({
         type: types.DELETE_CHAT_SUCCESS,
         payload: data,
@@ -147,9 +136,9 @@ export const deleteChat = id => (dispatch, getState) => {
       return data;
     })
     .catch(reason => dispatch({
-      type: types.DELETE_CHAT_FAILURE,
-      payload: reason,
-    }));
+        type: types.DELETE_CHAT_FAILURE,
+        payload: reason,
+      }));
 };
 
 export const joinChat = id => (dispatch, getState) => {
@@ -163,10 +152,7 @@ export const joinChat = id => (dispatch, getState) => {
     type: types.JOIN_CHAT_PENDING,
     payload: { id },
   });
-  return api(
-    `/chats/${id}/join`,
-    token,
-  )
+  return api(`/chats/${id}/join`, token)
     .then(({ chat }) => {
       dispatch({
         type: types.JOIN_CHAT_SUCCESS,
@@ -175,9 +161,9 @@ export const joinChat = id => (dispatch, getState) => {
       return chat;
     })
     .catch(reason => dispatch({
-      type: types.JOIN_CHAT_FAILURE,
-      payload: reason,
-    }));
+        type: types.JOIN_CHAT_FAILURE,
+        payload: reason,
+      }));
 };
 
 export const leaveChat = id => (dispatch, getState) => {
@@ -191,10 +177,7 @@ export const leaveChat = id => (dispatch, getState) => {
     type: types.LEAVE_CHAT_PENDING,
     payload: { id },
   });
-  return api(
-    `/chats/${id}/leave`,
-    token,
-  )
+  return api(`/chats/${id}/leave`, token)
     .then(({ chat }) => {
       dispatch({
         type: types.LEAVE_CHAT_SUCCESS,
@@ -207,7 +190,7 @@ export const leaveChat = id => (dispatch, getState) => {
       return chat;
     })
     .catch(reason => dispatch({
-      type: types.LEAVE_CHAT_FAILURE,
-      payload: reason,
-    }));
+        type: types.LEAVE_CHAT_FAILURE,
+        payload: reason,
+      }));
 };

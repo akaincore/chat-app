@@ -35,10 +35,7 @@ const allIds = (state = initialState.allIds, action) => {
     }
     case types.RECEIVE_NEW_CHAT:
     case types.CREATE_CHAT_SUCCESS: {
-      return [
-        ...state,
-        action.payload.chat._id,
-      ];
+      return [...state, action.payload.chat._id];
     }
     case types.RECEIVE_DELETED_CHAT:
     case types.DELETE_CHAT_SUCCESS: {
@@ -57,10 +54,7 @@ const myIds = (state = initialState.myIds, action) => {
     }
     case types.JOIN_CHAT_SUCCESS:
     case types.CREATE_CHAT_SUCCESS: {
-      return [
-        ...state,
-        action.payload.chat._id,
-      ];
+      return [...state, action.payload.chat._id];
     }
     case types.DELETE_CHAT_SUCCESS:
     case types.RECEIVE_DELETED_CHAT:
@@ -79,10 +73,13 @@ const byIds = (state = initialState.byIds, action) => {
     case types.FETCH_ALL_CHATS_SUCCESS: {
       return {
         ...state,
-        ...action.payload.chats.reduce((ids, chat) => ({
-          ...ids,
-          [chat._id]: chat,
-        }), {}),
+        ...action.payload.chats.reduce(
+          (ids, chat) => ({
+            ...ids,
+            [chat._id]: chat,
+          }),
+          {},
+        ),
       };
     }
     case types.SET_ACTIVE_CHAT: {

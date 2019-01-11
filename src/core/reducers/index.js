@@ -4,7 +4,6 @@ import chats from './chats';
 import messages from './messages';
 import services from './services';
 
-
 const rootReducer = combineReducers({
   auth,
   chats,
@@ -26,9 +25,7 @@ export const isCreator = (state, chat) => {
 
 export const isMember = (state, chat) => {
   try {
-    return chat.members.some(
-      member => member._id === getCurrentUser(state)._id,
-    );
+    return chat.members.some(member => member._id === getCurrentUser(state)._id);
   } catch (e) {
     return false;
   }

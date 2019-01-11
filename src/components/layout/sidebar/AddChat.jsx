@@ -14,15 +14,15 @@ const styles = theme => ({
 });
 
 const AddChat = ({
-                   classes,
-                   modalOpen,
-                   handleModalOpen,
-                   handleModalClose,
-                   title,
-                   onTitleChange,
-                   handleCreateChat,
-                   disabled,
-                 }) => (
+  classes,
+  modalOpen,
+  handleModalOpen,
+  handleModalClose,
+  title,
+  onTitleChange,
+  handleCreateChat,
+  disabled,
+}) => (
   <div>
     <Button
       disabled={disabled}

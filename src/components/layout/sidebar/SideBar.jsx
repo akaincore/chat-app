@@ -26,7 +26,6 @@ const styles = () => ({
 });
 
 class SideBar extends React.Component {
-
   state = {
     value: 0,
     modalOpen: false,
@@ -42,13 +41,13 @@ class SideBar extends React.Component {
     this.setState({ modalOpen: false });
   };
 
-  onTitleChange = (event) => {
+  onTitleChange = event => {
     this.setState({
       newChatTitle: event.target.value,
     });
   };
 
-  onSearch = (event) => {
+  onSearch = event => {
     this.setState({
       search: event.target.value,
     });
@@ -63,28 +62,17 @@ class SideBar extends React.Component {
     this.setState({ value });
   };
 
-  filterChats = (chats) => chats
-    .filter(
-      chat => chat.title
-        .toLowerCase()
-        .includes(this.state.search.toLowerCase()),
-    )
-    .sort((one, two) => (one.title.toLowerCase() <= two.title.toLowerCase() ? -1 : 1));
+  filterChats = chats => chats
+      .filter(chat => chat.title.toLowerCase().includes(this.state.search.toLowerCase()))
+      .sort((one, two) => (one.title.toLowerCase() <= two.title.toLowerCase() ? -1 : 1));
 
   render() {
     const {
-      classes,
-      chats,
-      activeChat,
-      myChats,
-      isConnected,
-    } = this.props;
+ classes, chats, activeChat, myChats, isConnected,
+} = this.props;
     const {
-      value,
-      modalOpen,
-      newChatTitle,
-      search,
-    } = this.state;
+ value, modalOpen, newChatTitle, search,
+} = this.state;
     const tabChats = value === 0 ? myChats : chats;
     return (
       <Drawer
@@ -95,10 +83,7 @@ class SideBar extends React.Component {
           paper: classes.drawerPaper,
         }}
       >
-        <SearchInput
-          value={search}
-          onSearch={this.onSearch}
-        />
+        <SearchInput value={search} onSearch={this.onSearch} />
         <Divider />
         <ChatList
           disabled={!isConnected}
@@ -128,6 +113,5 @@ class SideBar extends React.Component {
     );
   }
 }
-
 
 export default withStyles(styles)(SideBar);

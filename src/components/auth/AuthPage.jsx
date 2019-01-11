@@ -54,7 +54,6 @@ const fields = {
 };
 
 class AuthPage extends React.Component {
-
   state = {
     currentTab: 'login',
     login: getFieldsInitialState(fields.login),
@@ -65,10 +64,10 @@ class AuthPage extends React.Component {
     this.setState({ currentTab });
   };
 
-  inputChange = (form) => (event) => {
+  inputChange = form => event => {
     event.persist();
     const { name, value } = event.target;
-    this.setState((prevState) => ({
+    this.setState(prevState => ({
       [form]: {
         ...prevState[form],
         [name]: value,
@@ -76,7 +75,7 @@ class AuthPage extends React.Component {
     }));
   };
 
-  onSubmit = (form) => (event) => {
+  onSubmit = form => event => {
     event.preventDefault();
     const { username, password } = this.state[form];
     if (form === 'login') {
@@ -106,25 +105,23 @@ class AuthPage extends React.Component {
               <Tab label="Login" value="login" />
               <Tab label="Sign Up" value="signup" />
             </Tabs>
-            {currentTab === 'login' ?
-              (
-                <AuthForm
-                  fields={fields.login}
-                  values={login}
-                  submitText="Login"
-                  inputChange={this.inputChange('login')}
-                  onSubmit={this.onSubmit('login')}
-                />
-              ) : (
-                <AuthForm
-                  fields={fields.signup}
-                  values={signup}
-                  submitText="Sign Up"
-                  inputChange={this.inputChange('signup')}
-                  onSubmit={this.onSubmit('signup')}
-                />
-              )
-            }
+            {currentTab === 'login' ? (
+              <AuthForm
+                fields={fields.login}
+                values={login}
+                submitText="Login"
+                inputChange={this.inputChange('login')}
+                onSubmit={this.onSubmit('login')}
+              />
+            ) : (
+              <AuthForm
+                fields={fields.signup}
+                values={signup}
+                submitText="Sign Up"
+                inputChange={this.inputChange('signup')}
+                onSubmit={this.onSubmit('signup')}
+              />
+            )}
           </Paper>
         </Grid>
         <ErrorTip error={error} />

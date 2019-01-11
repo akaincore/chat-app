@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Redirect, Route, Router, Switch,
+ Redirect, Route, Router, Switch,
 } from 'react-router-dom';
 import ChatPage from '../containers/ChatPage';
 import AuthPage from '../containers/AuthPage';

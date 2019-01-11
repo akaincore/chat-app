@@ -27,22 +27,13 @@ const styles = theme => ({
   },
 });
 
-
 const AuthForm = ({
-                    fields,
-                    values,
-                    submitText,
-                    classes,
-                    inputChange,
-                    onSubmit,
-                  }) => (
+ fields, values, submitText, classes, inputChange, onSubmit,
+}) => (
   <form className={classes.authForm} onSubmit={onSubmit}>
     {fields.map(({
-                   type,
-                   name,
-                   placeholder,
-                   required,
-                 }) => (
+ type, name, placeholder, required,
+}) => (
       <TextField
         fullWidth
         key={`${type}-${name}`}
@@ -57,12 +48,7 @@ const AuthForm = ({
         onChange={inputChange}
       />
     ))}
-    <Button
-      variant="contained"
-      color="primary"
-      className={classes.submitButton}
-      type="submit"
-    >
+    <Button variant="contained" color="primary" className={classes.submitButton} type="submit">
       {submitText}
     </Button>
   </form>

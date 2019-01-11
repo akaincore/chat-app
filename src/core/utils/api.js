@@ -2,9 +2,11 @@ import fetch from 'isomorphic-fetch';
 
 const api = (uri, token, options, payload) => {
   const url = `//10.102.100.176:9999/v1/${uri}`;
-  const authHeaders = token ? {
-    Authorization: `Bearer ${token}`,
-  } : {};
+  const authHeaders = token
+    ? {
+        Authorization: `Bearer ${token}`,
+      }
+    : {};
   return fetch(url, {
     method: 'GET',
     body: JSON.stringify(payload),
@@ -16,7 +18,7 @@ const api = (uri, token, options, payload) => {
     ...options,
   })
     .then(response => response.json())
-    .then((json) => {
+    .then(json => {
       if (json.success) {
         return json;
       }

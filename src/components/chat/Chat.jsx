@@ -18,7 +18,6 @@ const styles = theme => ({
 });
 
 class Chat extends React.Component {
-
   componentDidMount() {
     this.scrollToBottom();
   }
@@ -44,10 +43,8 @@ class Chat extends React.Component {
     return (
       <main className={classes.root}>
         <List className={classes.list}>
-          {!messages.length &&
-          <PaperTip message="There is no messages yet" />
-          }
-          {messages.map((message) => (
+          {!messages.length && <PaperTip message="There is no messages yet" />}
+          {messages.map(message => (
             <Message
               key={message._id}
               sender={message.sender}
@@ -58,7 +55,7 @@ class Chat extends React.Component {
             />
           ))}
           <div
-            ref={(el) => {
+            ref={el => {
               this.messagesEnd = el;
             }}
           />
@@ -73,6 +70,5 @@ class Chat extends React.Component {
     );
   }
 }
-
 
 export default withStyles(styles)(Chat);

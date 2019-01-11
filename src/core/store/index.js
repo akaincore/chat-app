@@ -5,26 +5,18 @@ import rootReducer from '../reducers';
 
 const configureStore = () => {
   if (process.env.NODE_ENV === 'production') {
-    return createStore(
-      rootReducer,
-      applyMiddleware(thunkMiddleware),
-    );
+    return createStore(rootReducer, applyMiddleware(thunkMiddleware));
   }
 
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-      serialize: true,
-    })
+        serialize: true,
+      })
     : compose;
 
   const store = createStore(
     rootReducer,
-    composeEnhancers(
-      applyMiddleware(
-        thunkMiddleware,
-        loggerMiddleware,
-      ),
-    ),
+    composeEnhancers(applyMiddleware(thunkMiddleware, loggerMiddleware)),
   );
 
   if (process.env.NODE_ENV !== 'production') {

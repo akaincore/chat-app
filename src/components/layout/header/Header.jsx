@@ -21,7 +21,7 @@ const styles = () => ({
   },
 });
 
-const Header = (props) => {
+const Header = props => {
   const {
     classes,
     logout,
@@ -41,27 +41,23 @@ const Header = (props) => {
           <Typography variant="h6" color="inherit">
             {activeChat ? activeChat.title : 'Chat App'}
           </Typography>
-          {activeChat &&
-          (
+          {activeChat && (
             <ChatMenu
               disabled={!isConnected}
               currentUser={currentUser}
               deleteChat={() => deleteChat(activeChat._id)}
               leaveChat={() => leaveChat(activeChat._id)}
             />
-          )
-          }
+          )}
         </div>
-        {isAuthenticated &&
-        (
+        {isAuthenticated && (
           <ProfileMenu
             disabled={!isConnected}
             currentUser={currentUser}
             updateUser={updateUser}
             logout={logout}
           />
-        )
-        }
+        )}
       </Toolbar>
     </AppBar>
   );

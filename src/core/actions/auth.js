@@ -10,13 +10,8 @@ export const login = (username, password) => (dispatch, getState) => {
   dispatch({
     type: types.LOGIN_PENDING,
   });
-  return api(
-    '/login',
-    null,
-    { method: 'POST' },
-    { username, password },
-  )
-    .then((json) => {
+  return api('/login', null, { method: 'POST' }, { username, password })
+    .then(json => {
       if (!json.token) {
         throw new Error('No token provided');
       }
@@ -27,9 +22,9 @@ export const login = (username, password) => (dispatch, getState) => {
       });
     })
     .catch(reason => dispatch({
-      type: types.LOGIN_FAILURE,
-      payload: reason,
-    }));
+        type: types.LOGIN_FAILURE,
+        payload: reason,
+      }));
 };
 
 export const logout = () => (dispatch, getState) => {
@@ -47,10 +42,7 @@ export const logout = () => (dispatch, getState) => {
       type: types.LOGOUT_FAILURE,
     });
   }
-  return api(
-    '/logout',
-    token,
-  )
+  return api('/logout', token)
     .then(() => {
       localStorage.removeItem('token');
       dispatch({
@@ -58,9 +50,9 @@ export const logout = () => (dispatch, getState) => {
       });
     })
     .catch(reason => dispatch({
-      type: types.LOGOUT_FAILURE,
-      payload: reason,
-    }));
+        type: types.LOGOUT_FAILURE,
+        payload: reason,
+      }));
 };
 
 export const signup = (username, password) => (dispatch, getState) => {
@@ -72,13 +64,8 @@ export const signup = (username, password) => (dispatch, getState) => {
   dispatch({
     type: types.SIGNUP_PENDING,
   });
-  return api(
-    '/signup',
-    null,
-    { method: 'POST' },
-    { username, password },
-  )
-    .then((json) => {
+  return api('/signup', null, { method: 'POST' }, { username, password })
+    .then(json => {
       if (!json.token) {
         throw new Error('No token provided');
       }
@@ -89,9 +76,9 @@ export const signup = (username, password) => (dispatch, getState) => {
       });
     })
     .catch(reason => dispatch({
-      type: types.SIGNUP_FAILURE,
-      payload: reason,
-    }));
+        type: types.SIGNUP_FAILURE,
+        payload: reason,
+      }));
 };
 
 export const receiveAuth = () => (dispatch, getState) => {
@@ -109,18 +96,15 @@ export const receiveAuth = () => (dispatch, getState) => {
   dispatch({
     type: types.RECEIVE_AUTH_PENDING,
   });
-  return api(
-    '/users/me',
-    token,
-  )
+  return api('/users/me', token)
     .then(json => dispatch({
-      type: types.RECEIVE_AUTH_SUCCESS,
-      payload: json,
-    }))
+        type: types.RECEIVE_AUTH_SUCCESS,
+        payload: json,
+      }))
     .catch(reason => dispatch({
-      type: types.RECEIVE_AUTH_FAILURE,
-      payload: reason,
-    }));
+        type: types.RECEIVE_AUTH_FAILURE,
+        payload: reason,
+      }));
 };
 
 export const updateUser = payload => (dispatch, getState) => {
@@ -133,20 +117,15 @@ export const updateUser = payload => (dispatch, getState) => {
   dispatch({
     type: types.UPDATE_USER_PENDING,
   });
-  return api(
-    '/users/me',
-    token,
-    { method: 'POST' },
-    { data: payload },
-  )
-    .then((json) => {
+  return api('/users/me', token, { method: 'POST' }, { data: payload })
+    .then(json => {
       dispatch({
         type: types.UPDATE_USER_SUCCESS,
         payload: json,
       });
       return json;
     })
-    .catch((reason) => {
+    .catch(reason => {
       dispatch({
         type: types.UPDATE_USER_FAILURE,
         payload: reason,

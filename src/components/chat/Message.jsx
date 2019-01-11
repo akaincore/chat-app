@@ -6,7 +6,6 @@ import classNames from 'classnames';
 import moment from 'moment';
 import ChatAvatar from '../common/ChatAvatar';
 
-
 const styles = theme => ({
   root: {
     ...theme.mixins.gutters(),
@@ -50,14 +49,8 @@ const styles = theme => ({
 });
 
 const Message = ({
-                   classes,
-                   sender,
-                   content,
-                   currentUser,
-                   statusMessage,
-                   createdAt,
-                 }) => {
-
+ classes, sender, content, currentUser, statusMessage, createdAt,
+}) => {
   if (statusMessage) {
     return (
       <div className={classNames(classes.messageContainer)}>
@@ -76,14 +69,8 @@ const Message = ({
 
   const isMy = sender._id === currentUser._id;
   return (
-    <div
-      className={classNames(classes.messageContainer, isMy && classes.myMessage)}
-    >
-      <ChatAvatar
-        className={classes.avatar}
-        title={sender.username}
-        id={sender._id}
-      />
+    <div className={classNames(classes.messageContainer, isMy && classes.myMessage)}>
+      <ChatAvatar className={classes.avatar} title={sender.username} id={sender._id} />
       <Paper
         className={classNames(classes.root, isMy && classes.myMessageBackground)}
         elevation={1}

@@ -19,7 +19,7 @@ import {
 import * as fromChats from '../core/reducers/chats';
 import * as fromState from '../core/reducers';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   const activeChat = fromChats.getChatById(state.chats, state.chats.activeId);
   return {
     isAuthenticated: state.auth.isAuthenticated,
@@ -38,20 +38,26 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  logout,
-  fetchAllChats,
-  fetchMyChats,
-  setActiveChat,
-  updateUser,
-  createChat,
-  deleteChat,
-  sendMessage,
-  joinChat,
-  leaveChat,
-  mountChat,
-  unmountChat,
-  socketsConnect,
-}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(
+    {
+      logout,
+      fetchAllChats,
+      fetchMyChats,
+      setActiveChat,
+      updateUser,
+      createChat,
+      deleteChat,
+      sendMessage,
+      joinChat,
+      leaveChat,
+      mountChat,
+      unmountChat,
+      socketsConnect,
+    },
+    dispatch,
+  );
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChatPage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ChatPage);

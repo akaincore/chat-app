@@ -7,17 +7,9 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
 
 const AddChatModal = ({
-                        modalOpen,
-                        handleModalClose,
-                        title,
-                        onTitleChange,
-                        handleCreateChat,
-                      }) => (
-  <Dialog
-    open={modalOpen}
-    onClose={handleModalClose}
-    aria-labelledby="form-dialog-title"
-  >
+ modalOpen, handleModalClose, title, onTitleChange, handleCreateChat,
+}) => (
+  <Dialog open={modalOpen} onClose={handleModalClose} aria-labelledby="form-dialog-title">
     <DialogTitle id="form-dialog-title">Create new chat</DialogTitle>
     <DialogContent>
       <TextField
