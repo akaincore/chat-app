@@ -15,7 +15,5 @@ module.exports = {
     'operator-linebreak': 0, // uncomfortable to use
     'react/destructuring-assignment': 0, // uncomfortable to use with single prop
     'arrow-parens': 0, // uncomfortable
-    // not implemented yet
-    'react/prop-types': 1,
   },
 };
