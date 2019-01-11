@@ -29,6 +29,13 @@ const styles = theme => ({
     fontStyle: 'italic',
     color: '#bbb',
   },
+  statusMessageTime: {
+    width: '100%',
+    textAlign: 'center',
+    fontStyle: 'italic',
+    color: '#bbb',
+    fontSize: '10px',
+  },
   myMessage: {
     flexDirection: 'row-reverse',
   },
@@ -49,6 +56,9 @@ const Message = ({ classes, sender, content, currentUser, statusMessage, created
         <Typography component="div" className={classes.statusMessage}>
           <Typography component="p">
             {sender.username} {content}
+          </Typography>
+          <Typography component="p" className={classes.statusMessageTime}>
+            {moment(createdAt).fromNow()}
           </Typography>
         </Typography>
       </div>

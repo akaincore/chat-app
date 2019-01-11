@@ -6,7 +6,7 @@ export const missingSocketConnection = () => {
   return {
     type: types.SOCKETS_CONNECTION_MISSING,
     payload: new Error('Missing connection'),
-  }
+  };
 };
 
 let socket = null;
@@ -22,7 +22,7 @@ export const socketsConnect = () => {
       type: types.SOCKETS_CONNECTION_PENDING,
     });
     const { token } = getState().auth;
-    socket = SocketIOClient('ws://localhost:9999/', {
+    socket = SocketIOClient('ws://10.102.100.176:9999/', {
       query: { token },
     });
     // common socket events
@@ -58,14 +58,14 @@ export const socketsConnect = () => {
     socket.on('new-chat', ({ chat }) => {
       dispatch({
         type: types.RECEIVE_NEW_CHAT,
-        payload: chat,
+        payload: { chat },
       });
     });
     socket.on('deleted-chat', ({ chat }) => {
       const { activeId } = getState().chats;
       dispatch({
         type: types.RECEIVE_DELETED_CHAT,
-        payload: chat,
+        payload: { chat },
       });
       if (activeId === chat._id) {
         dispatch(redirect('/chat'));
