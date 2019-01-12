@@ -41,7 +41,7 @@ const Header = ({
         <Typography variant="h6" color="inherit">
           {activeChat ? activeChat.title : 'Chat App'}
         </Typography>
-        {activeChat && (
+        {activeChat && currentUser.isChatMember && (
           <ChatMenu
             disabled={!isConnected}
             currentUser={currentUser}

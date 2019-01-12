@@ -53,7 +53,11 @@ class SideBar extends React.Component {
   };
 
   handleModalClose = () => {
-    this.setState({ modalOpen: false });
+    this.setState(prevState => ({
+      ...prevState,
+      modalOpen: false,
+      newChatTitle: '',
+    }));
   };
 
   onTitleChange = event => {

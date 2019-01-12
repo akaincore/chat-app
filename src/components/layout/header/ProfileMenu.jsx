@@ -43,7 +43,16 @@ class ProfileMenu extends React.Component {
   };
 
   handleModalClose = () => {
-    this.setState({ modalOpen: false });
+    const { username, firstName, lastName } = this.props.currentUser;
+    this.setState(prevState => ({
+      ...prevState,
+      modalOpen: false,
+      userForm: {
+        username,
+        firstName,
+        lastName,
+      },
+    }));
   };
 
   onUserFieldChange = event => {
