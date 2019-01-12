@@ -33,8 +33,7 @@ const allIds = (state = initialState.allIds, action) => {
     case types.FETCH_ALL_CHATS_SUCCESS: {
       return action.payload.chats.map(getChatId);
     }
-    case types.RECEIVE_NEW_CHAT:
-    case types.CREATE_CHAT_SUCCESS: {
+    case types.RECEIVE_NEW_CHAT: {
       return [...state, action.payload.chat._id];
     }
     case types.RECEIVE_DELETED_CHAT:
