@@ -15,7 +15,6 @@ exports[`<Header /> renders correctly 1`] = `
       >
         foo
       </h6>
-      ChatMenu
     </div>
   </div>
 </header>
