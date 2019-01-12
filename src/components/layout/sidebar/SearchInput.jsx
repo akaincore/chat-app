@@ -9,6 +9,7 @@ const styles = theme => ({
     justifyContent: 'center',
     flexWrap: 'wrap',
     padding: '10px',
+    minHeight: '65px',
   },
   input: {
     margin: theme.spacing.unit,
