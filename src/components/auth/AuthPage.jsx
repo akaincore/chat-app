@@ -60,7 +60,7 @@ const fields = {
       required: true,
     },
     {
-      name: 're_password',
+      name: 'rePassword',
       type: 'password',
       placeholder: 'Repeat password',
       required: true,
@@ -86,6 +86,7 @@ class AuthPage extends React.Component {
     currentTab: 'login',
     login: getFieldsInitialState(fields.login),
     signup: getFieldsInitialState(fields.signup),
+    passwordsMismatch: false,
   };
 
   componentDidMount() {
@@ -113,7 +114,12 @@ class AuthPage extends React.Component {
     if (form === 'login') {
       this.props.login(username, password);
     } else {
-      this.props.signup(username, password);
+      const { rePassword } = this.state.signup;
+      if (password === rePassword) {
+        this.props.signup(username, password);
+      } else {
+        this.setState({ passwordsMismatch: true });
+      }
     }
   };
 
@@ -160,6 +166,7 @@ class AuthPage extends React.Component {
                 submitText="Sign Up"
                 inputChange={this.inputChange('signup')}
                 onSubmit={this.onSubmit('signup')}
+                passwordsMismatch={this.state.passwordsMismatch}
               />
             )}
           </Paper>

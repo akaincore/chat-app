@@ -29,7 +29,13 @@ const styles = theme => ({
 });
 
 const AuthForm = ({
- fields, values, submitText, classes, inputChange, onSubmit,
+  fields,
+  values,
+  submitText,
+  classes,
+  inputChange,
+  onSubmit,
+  passwordsMismatch,
 }) => (
   <form className={classes.authForm} onSubmit={onSubmit}>
     {fields.map(({
@@ -47,6 +53,7 @@ const AuthForm = ({
         className={classes.textField}
         margin="normal"
         onChange={inputChange}
+        error={name === 'rePassword' && passwordsMismatch}
       />
     ))}
     <Button variant="contained" color="primary" className={classes.submitButton} type="submit">
@@ -67,8 +74,13 @@ AuthForm.propTypes = {
   ).isRequired,
   values: PropTypes.objectOf(PropTypes.string).isRequired,
   submitText: PropTypes.string.isRequired,
+  passwordsMismatch: PropTypes.bool,
   inputChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
+};
+
+AuthForm.defaultProps = {
+  passwordsMismatch: false,
 };
 
 export default withStyles(styles)(AuthForm);
