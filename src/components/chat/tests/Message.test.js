@@ -6,6 +6,8 @@ import Message from '../Message';
 
 jest.mock('../../common/ChatAvatar', () => () => 'ChatAvatar');
 
+jest.mock('moment', () => () => ({ fromNow: () => '11 days ago' }));
+
 const mockProps = {
   sender: {
     _id: '12345',

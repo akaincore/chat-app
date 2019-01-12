@@ -6,6 +6,7 @@ import renderer from 'react-test-renderer';
 import ChatListItem from '../ChatListItem';
 
 jest.mock('../../../common/ChatAvatar', () => () => 'ChatAvatar');
+jest.mock('moment', () => () => ({ fromNow: () => '11 days ago' }));
 
 const mockProps = {
   chatId: '12345',

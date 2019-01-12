@@ -26,6 +26,7 @@ export const initialUnauthorizedState = {
       login: false,
       logout: false,
       signup: false,
+      receiveAuth: false,
     },
   },
   auth: {
@@ -37,7 +38,12 @@ export const initialUnauthorizedState = {
 
 export const initialAuthenticatedState = {
   services: {
-    isFetching: false,
+    isFetching: {
+      login: false,
+      logout: false,
+      signup: false,
+      receiveAuth: false,
+    },
   },
   auth: {
     isAuthenticated: true,
