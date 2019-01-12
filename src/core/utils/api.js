@@ -1,4 +1,5 @@
-import fetch from 'isomorphic-fetch';
+// import fetch from 'isomorphic-fetch';
+import 'isomorphic-fetch';
 import config from '../../config';
 
 const api = (uri, token, options, payload) => {

@@ -92,6 +92,7 @@ export const receiveAuth = () => (dispatch, getState) => {
     dispatch({
       type: types.RECEIVE_AUTH_FAILURE,
     });
+    return Promise.resolve();
   }
   dispatch({
     type: types.RECEIVE_AUTH_PENDING,
